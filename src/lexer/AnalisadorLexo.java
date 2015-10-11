@@ -392,29 +392,27 @@ public class AnalisadorLexo {
   /* user code: */
   
  public static void token(String yytex) throws IOException {
-
         File file = new File("").getAbsoluteFile();
         //"/src/lexer/Arquivo.txt";  
 
-        File arq = new File(file + "/src/lexer/Arquivo.txt");
+        File arq = new File(file + "/src/lexer/Tokens.txt");
+
         //neste ponto criamos o arquivo fisicamente
+        arq.createNewFile();
 
-            arq.createNewFile();
-
-            //Devemos passar no construtor do FileWriter qual arquivo
-            // vamos manipular.
-            // Esse construtor aceita dois tipos de parâmetros,
-            // File ou String.
-            //O parâmetro true indica que reescrevemos no arquivo
-            // sem apagar o que já existe.
-            // O false apagaria o conteúdo do arquivo e escreveria
-            // o novo conteúdo.
-            // Se não usar o 2° parâmetro, ele por padrão será false.
-            //O mais importante, essa linha abre o fluxo do arquivo 
+        //Devemos passar no construtor do FileWriter qual arquivo
+        // vamos manipular.
+        // Esse construtor aceita dois tipos de parâmetros,
+        // File ou String.
+        //O parâmetro true indica que reescrevemos no arquivo
+        // sem apagar o que já existe.
+        // O false apagaria o conteúdo do arquivo e escreveria
+        // o novo conteúdo.
+        // Se não usar o 2° parâmetro, ele por padrão será false.
+        //O mais importante, essa linha abre o fluxo do arquivo 
 
         FileWriter fileWriter = new FileWriter(arq, true);
         PrintWriter printWriter = new PrintWriter(fileWriter);
-        
         printWriter.println(yytex);
         //o método flush libera a escrita no arquivo
         printWriter.flush();
@@ -801,11 +799,11 @@ public class AnalisadorLexo {
             }
           case 59: break;
           case 2: 
-            { System.out.println(" Op_divisão -> " + yytext().toString());token(" Op_divisão -> " + yytext());
+            { System.out.println(" Op_divisão        -> " + yytext().toString());token(" Op_divisão    -> " + yytext());
             }
           case 60: break;
           case 3: 
-            { System.out.println(" Op_multiplicação -> " + yytext().toString());token(" Op_multiplicação -> " + yytext());
+            { System.out.println(" Op_multiplicação  -> " + yytext().toString());token(" Op_multiplicação -> " + yytext());
             }
           case 61: break;
           case 4: 
@@ -813,63 +811,63 @@ public class AnalisadorLexo {
             }
           case 62: break;
           case 5: 
-            { System.out.println(" id -> " + yytext().toString());token(" id -> " + yytext());
+            { System.out.println(" id                        -> " + yytext().toString());token(" id          -> " + yytext());
             }
           case 63: break;
           case 6: 
-            { System.out.println(" Op_subtração -> " + yytext().toString());token(" Op_subtração -> " + yytext());
+            { System.out.println(" Op_subtração      -> " + yytext().toString());token(" Op_subtração  -> " + yytext());
             }
           case 64: break;
           case 7: 
-            { System.out.println(" Op_adção -> " + yytext().toString());token(" Op_adção -> " + yytext());
+            { System.out.println(" Op_adção          -> " + yytext().toString());token(" Op_adção -> " + yytext());
             }
           case 65: break;
           case 8: 
-            { System.out.println(" Ponto -> " + yytext().toString());token(" Ponto -> " + yytext());
+            { System.out.println(" Ponto             -> " + yytext().toString());token(" Ponto       -> " + yytext());
             }
           case 66: break;
           case 9: 
-            { System.out.println(" Abrepar -> " + yytext().toString());token(" Abrepar -> " + yytext());
+            { System.out.println(" Abrepar           -> " + yytext().toString());token(" Abrepar     -> " + yytext());
             }
           case 67: break;
           case 10: 
-            { System.out.println(" Fechapar -> " + yytext().toString());token(" Fechapar -> " + yytext());
+            { System.out.println(" Fechapar          -> " + yytext().toString());token(" Fechapar    -> " + yytext());
             }
           case 68: break;
           case 11: 
-            { System.out.println(" Abrechave -> " + yytext().toString());token(" Abrechave -> " + yytext());
+            { System.out.println(" Abrechave         -> " + yytext().toString());token(" Abrechave   -> " + yytext());
             }
           case 69: break;
           case 12: 
-            { System.out.println(" Fechachave -> " + yytext().toString());token(" Fechachave -> " + yytext());
+            { System.out.println(" Fechachave        -> " + yytext().toString());token(" Fechachave  -> " + yytext());
             }
           case 70: break;
           case 13: 
-            { System.out.println(" Abrecolc -> " + yytext().toString());token(" Abrecolc -> " + yytext());
+            { System.out.println(" Abrecolc          -> " + yytext().toString());token(" Abrecolc    -> " + yytext());
             }
           case 71: break;
           case 14: 
-            { System.out.println(" Fechacolc -> " + yytext().toString());token(" Fechacolc -> " + yytext());
+            { System.out.println(" Fechacolc         -> " + yytext().toString());token(" Fechacolc   -> " + yytext());
             }
           case 72: break;
           case 15: 
-            { System.out.println(" Atrib_ -> " + yytext().toString());token(" Atrib_ -> " + yytext());
+            { System.out.println(" Atrib_            -> " + yytext().toString());token(" Atrib_      -> " + yytext());
             }
           case 73: break;
           case 16: 
-            { System.out.println(" Op_diferente_de -> " + yytext().toString());token(" Op_diferente_de -> " + yytext());
+            { System.out.println(" Op_diferente_de   -> " + yytext().toString());token(" Op_diferente_de -> " + yytext());
             }
           case 74: break;
           case 17: 
-            { System.out.println(" Op_menor_que -> " +yytext().toString());token(" Op_menor_que -> " + yytext());
+            { System.out.println(" Op_menor_que      -> " +yytext().toString());token(" Op_menor_que  -> " + yytext());
             }
           case 75: break;
           case 18: 
-            { System.out.println(" Op_maior_que -> " + yytext().toString());token(" Op_maior_que -> " + yytext());
+            { System.out.println(" Op_maior_que      -> " + yytext().toString());token(" Op_maior_que -> " + yytext());
             }
           case 76: break;
           case 19: 
-            { System.out.println(" Op_mod -> " + yytext().toString());token(" Op_mod -> " + yytext());
+            { System.out.println(" Op_mod            -> " + yytext().toString());token(" Op_mod        -> " + yytext());
             }
           case 77: break;
           case 20: 
@@ -877,155 +875,155 @@ public class AnalisadorLexo {
             }
           case 78: break;
           case 21: 
-            { System.out.println(" inteiro -> " + yytext().toString());token(" inteiro -> " + yytext());
+            { System.out.println(" inteiro                   -> " + yytext().toString());token(" inteiro     -> " + yytext());
             }
           case 79: break;
           case 22: 
-            { System.out.println(" DO -> " +  yytext().toString());token(" DO -> " + yytext());
+            { System.out.println(" DO           -> " +  yytext().toString());token(" DO         -> " + yytext());
             }
           case 80: break;
           case 23: 
-            { System.out.println(" IF -> " + yytext().toString());token(" IF -> " + yytext());
+            { System.out.println(" IF           -> " + yytext().toString());token(" IF          -> " + yytext());
             }
           case 81: break;
           case 24: 
-            { System.out.println(" Op_ou -> " + yytext().toString());token(" Op_ou -> " + yytext());
+            { System.out.println(" Op_ou             -> " + yytext().toString());token(" Op_ou       -> " + yytext());
             }
           case 82: break;
           case 25: 
-            { System.out.println(" Op_e -> " + yytext().toString());token(" Op_e -> " + yytext());
+            { System.out.println(" Op_e              -> " + yytext().toString());token(" Op_e        -> " + yytext());
             }
           case 83: break;
           case 26: 
-            { System.out.println(" Op_igual_a -> " + yytext().toString());token(" Op_igual_a -> " + yytext());
+            { System.out.println(" Op_igual_a        -> " + yytext().toString());token(" Op_igual_a  -> " + yytext());
             }
           case 84: break;
           case 27: 
-            { System.out.println(" Op_menor_igual_a -> " + yytext().toString());token(" Op_menor_igual_a -> " + yytext());
+            { System.out.println(" Op_menor_igual_a  -> " + yytext().toString());token(" Op_menor_igual_a -> " + yytext());
             }
           case 85: break;
           case 28: 
-            { System.out.println(" Op_maior_igual_a -> " + yytext().toString());token(" Op_maior_igual_a -> " + yytext());
+            { System.out.println(" Op_maior_igual_a  -> " + yytext().toString());token(" Op_maior_igual_a -> " + yytext());
             }
           case 86: break;
           case 29: 
-            { System.out.println(" NEW -> " + yytext().toString());token(" NEW -> " + yytext());
+            { System.out.println(" NEW          -> " + yytext().toString());token(" NEW         -> " + yytext());
             }
           case 87: break;
           case 30: 
-            { System.out.println(" FOR -> " + yytext().toString());token(" FOR -> " + yytext());
+            { System.out.println(" FOR          -> " + yytext().toString());token(" FOR         -> " + yytext());
             }
           case 88: break;
           case 31: 
-            { System.out.println(" INT -> " + yytext().toString());token(" INT -> " + yytext());
+            { System.out.println(" INT          -> " + yytext().toString());token(" INT         -> " + yytext());
             }
           case 89: break;
           case 32: 
-            { System.out.println(" Comentario -> " + yytext().toString());token(" Comentario -> " + yytext());
+            { System.out.println(" Comentario                -> " + yytext().toString());token(" Comentario  -> " + yytext());
             }
           case 90: break;
           case 33: 
-            { System.out.println(" Float -> " + yytext().toString());token(" Float -> " + yytext());
+            { System.out.println(" Float                     -> " + yytext().toString());token(" Float       -> " + yytext());
             }
           case 91: break;
           case 34: 
-            { System.out.println(" ELSE -> " + yytext().toString());token(" ELSE -> " + yytext());
+            { System.out.println(" ELSE         -> " + yytext().toString());token(" ELSE        -> " + yytext());
             }
           case 92: break;
           case 35: 
-            { System.out.println(" CASE -> " + yytext().toString());token(" CASE -> " + yytext());
+            { System.out.println(" CASE         -> " + yytext().toString());token(" CASE        -> " + yytext());
             }
           case 93: break;
           case 36: 
-            { System.out.println(" TRUE -> " + yytext().toString());token(" TRUE -> " + yytext());
+            { System.out.println(" TRUE         -> " + yytext().toString());token(" TRUE        -> " + yytext());
             }
           case 94: break;
           case 37: 
-            { System.out.println(" THIS -> " + yytext().toString());token(" THIS -> " + yytext());
+            { System.out.println(" THIS         -> " + yytext().toString());token(" THIS        -> " + yytext());
             }
           case 95: break;
           case 38: 
-            { System.out.println(" VOID -> " + yytext().toString());token(" VOID -> " + yytext());
+            { System.out.println(" VOID         -> " + yytext().toString());token(" VOID        -> " + yytext());
             }
           case 96: break;
           case 39: 
-            { System.out.println(" BREAK -> " + yytext().toString());token(" BREAK -> " + yytext());
+            { System.out.println(" BREAK        -> " + yytext().toString());token(" BREAK       -> " + yytext());
             }
           case 97: break;
           case 40: 
-            { System.out.println(" CLASS -> " + yytext().toString());token(" CLASS -> " + yytext());
+            { System.out.println(" CLASS        -> " + yytext().toString());token(" CLASS       -> " + yytext());
             }
           case 98: break;
           case 41: 
-            { System.out.println(" SUPER -> " + yytext().toString());token(" SUPER -> " + yytext());
+            { System.out.println(" SUPER        -> " + yytext().toString());token(" SUPER       -> " + yytext());
             }
           case 99: break;
           case 42: 
-            { System.out.println(" TROW -> " + yytext().toString());token(" TROW -> " + yytext());
+            { System.out.println(" TROW         -> " + yytext().toString());token(" TROW        -> " + yytext());
             }
           case 100: break;
           case 43: 
-            { System.out.println(" FALSE -> " + yytext().toString());token(" FALSE -> " + yytext());
+            { System.out.println(" FALSE        -> " + yytext().toString());token(" FALSE       -> " + yytext());
             }
           case 101: break;
           case 44: 
-            { System.out.println(" WHILE -> " + yytext().toString());token(" WHILE -> " + yytext());
+            { System.out.println(" WHILE        -> " + yytext().toString());token(" WHILE       -> " + yytext());
             }
           case 102: break;
           case 45: 
-            { System.out.println(" STATIC -> " + yytext().toString());token(" STATIC -> " + yytext());
+            { System.out.println(" STATIC       -> " + yytext().toString());token(" STATIC      -> " + yytext());
             }
           case 103: break;
           case 46: 
-            { System.out.println(" SWITCH -> " + yytext().toString());token(" SWITCH -> " + yytext());
+            { System.out.println(" SWITCH       -> " + yytext().toString());token(" SWITCH      -> " + yytext());
             }
           case 104: break;
           case 47: 
-            { System.out.println(" TROWS -> " + yytext().toString());token(" TROWS -> " + yytext());
+            { System.out.println(" TROWS        -> " + yytext().toString());token(" TROWS       -> " + yytext());
             }
           case 105: break;
           case 48: 
-            { System.out.println(" RETURN -> " + yytext().toString());token(" RETURN -> " + yytext());
+            { System.out.println(" RETURN       -> " + yytext().toString());token(" RETURN      -> " + yytext());
             }
           case 106: break;
           case 49: 
-            { System.out.println(" IMPORT -> " + yytext().toString());token(" IMPORT -> " + yytext());
+            { System.out.println(" IMPORT       -> " + yytext().toString());token(" IMPORT      -> " + yytext());
             }
           case 107: break;
           case 50: 
-            { System.out.println(" PUBLIC -> " + yytext().toString());token(" PUBLIC -> " + yytext());
+            { System.out.println(" PUBLIC       -> " + yytext().toString());token(" PUBLIC      -> " + yytext());
             }
           case 108: break;
           case 51: 
-            { System.out.println(" EXTENDS -> " + yytext().toString());token(" EXTENDS -> " + yytext());
+            { System.out.println(" EXTENDS      -> " + yytext().toString());token(" EXTENDS     -> " + yytext());
             }
           case 109: break;
           case 52: 
-            { System.out.println(" BOOLEAN -> " + yytext().toString());token(" BOOLEAN -> " + yytext());
+            { System.out.println(" BOOLEAN      -> " + yytext().toString());token(" BOOLEAN     -> " + yytext());
             }
           case 110: break;
           case 53: 
-            { System.out.println(" DEFAULT -> " + yytext().toString());token(" DEFAULT -> " + yytext());
+            { System.out.println(" DEFAULT      -> " + yytext().toString());token(" DEFAULT     -> " + yytext());
             }
           case 111: break;
           case 54: 
-            { System.out.println(" FINALLY -> " + yytext().toString());token(" FINALLY -> " + yytext());
+            { System.out.println(" FINALLY      -> " + yytext().toString());token(" FINALLY     -> " + yytext());
             }
           case 112: break;
           case 55: 
-            { System.out.println(" PACKAGE -> " + yytext().toString());token(" PACKAGE -> " + yytext());
+            { System.out.println(" PACKAGE      -> " + yytext().toString());token(" PACKAGE     -> " + yytext());
             }
           case 113: break;
           case 56: 
-            { System.out.println(" INTERFACE -> " + yytext().toString());token(" INTERFACE -> " + yytext());
+            { System.out.println(" INTERFACE    -> " + yytext().toString());token(" INTERFACE   -> " + yytext());
             }
           case 114: break;
           case 57: 
-            { System.out.println(" INSTANCEOF -> " + yytext().toString());token(" INSTANCEOF -> " + yytext());
+            { System.out.println(" INSTANCEOF   -> " + yytext().toString());token(" INSTANCEOF  -> " + yytext());
             }
           case 115: break;
           case 58: 
-            { System.out.println(" IMPLEMENTS -> " + yytext().toString());token(" IMPLEMENTS -> " + yytext());
+            { System.out.println(" IMPLEMENTS   -> " + yytext().toString());token(" IMPLEMENTS  -> " + yytext());
             }
           case 116: break;
           default:
