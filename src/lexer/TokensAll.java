@@ -12,6 +12,10 @@ public final class TokensAll {
     private int posicao;
     private List<String> tokens = new ArrayList();
     private String token = new String();
+    
+    // Definição de que as palavras reservadas iniciaram de 300
+    // Para que não tenha conflitos com a numeração da Tabela ASC
+    int id = 300;
 
     public List<String> getTokens() {
         return tokens;
@@ -20,7 +24,29 @@ public final class TokensAll {
     public void setTokens(List<String> tokens) {
         this.tokens = tokens;
     }
+    
+    // Adiciona uma palavra Todos os tokens exceto um ID(lexema)
+    public void add(String token) throws IOException {
+        
+        if (getTokens().isEmpty()) {
+            tokens.add(token + "\n");
 
+            // Token que vai para a tabela.txt
+            token(getId() + "\n");
+            id += 10;
+        }
+        if (canAdd(token + "\n")) {
+
+            tokens.add(token + "\n");
+
+            // Token que vai para a tabela.txt
+            token(getId() + "\n");
+            id += 10;
+        }
+
+    }
+    
+    // Adiciona uma ID com um identificador
     public void add(String token, int idTabela) throws IOException {
         String n = "";
         int posicaoAtual = posicaoToken(token);
@@ -29,16 +55,18 @@ public final class TokensAll {
             tokens.add(posicaoAtual + " " + token + " " + idTabela + "\n");
 
             // Token que vai para a tabela.txt
+            // Se for palavra reservada add apenas o identificador 
+            // Ex.: token = public, então add no arquivo simbolo 300
             tokenSimbolo(token + " " + posicaoAtual + "\n");
-            token(idTabela  + " " + posicaoAtual + "\n");
+            token(idTabela + " " + posicaoAtual + "\n");
         }
-        if (getTokens().size() > 1 && containsTheToken(token)) {           
-           for (String s : getTokens()) {
+        if (getTokens().size() > 1 && containsTheToken(token)) {
+            for (String s : getTokens()) {
                 if (s.contains(token)) {
                     n = s.substring(0, Math.min(s.length(), 1));
                     break;
                 }
-            }            
+            }
             token(idTabela + " " + n + "\n");
         }
 
@@ -62,14 +90,7 @@ public final class TokensAll {
     }
 
     public boolean canAdd(String token) {
-        if (!getTokens().isEmpty()) {
-            for (String s : getTokens()) {
-                if (s.contains(token)) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return !(!getTokens().isEmpty() && !getTokens().stream().noneMatch((s) -> (s.contains(token))));
     }
 
     public int posicaoToken(String token) {
@@ -93,11 +114,31 @@ public final class TokensAll {
         return getTokens().stream().anyMatch((t) -> (t.contains(token)));
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
+    
     public static void main(String[] args) throws IOException {
 
         TokensAll all = new TokensAll();
-
-        all.add("main", 300);
+        
+        // Teste Palavras Reservadas
+        all.add("main");
+        all.add("public");
+        all.add("void");
+        all.add("main");
+        all.add("int");
+        all.add("int");
+        all.add("String");
+        all.add("=");
+        
+        // Teste ID
         all.add("soma", 123);
         all.add("x", 125);
         all.add("y", 125);
@@ -107,6 +148,7 @@ public final class TokensAll {
         all.add("max", 93);
         all.add("Soma", 41);
         all.add("y", 125);
+        all.add("z", 40);
         all.add("x", 125);
 
         all.getTokens().stream().forEach((t) -> {
