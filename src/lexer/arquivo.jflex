@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 
 %class AnalisadorLexo
 %public
+%final
 %standalone
 %unicode
 %line
@@ -55,7 +56,7 @@ letra = [A-Z]|[a-z]
 digito = [0-9]
 sinais = ( "-" | "+" | "*" | "/")
 natural = ({digito} | [1-9]{digito}+)
-inteiro = {sinais}{natural}
+inteiro = {natural}
 float = {inteiro}"."{digito}+(("E" | "e"){sinais}?{natural}?)?
 id = ({letra} | _ )({letra} | {digito} | _ )*
 
@@ -63,36 +64,37 @@ id = ({letra} | _ )({letra} | {digito} | _ )*
 %%
 
  // Palavra_Reservada (Tokens)
- boolean     {System.out.println(" BOOLEAN      -> " + yytext().toString());token(" BOOLEAN     -> " + yytext());}
- class       {System.out.println(" CLASS        -> " + yytext().toString());token(" CLASS       -> " + yytext());}
- do          {System.out.println(" DO           -> " +  yytext().toString());token(" DO         -> " + yytext());}
- else        {System.out.println(" ELSE         -> " + yytext().toString());token(" ELSE        -> " + yytext());}
- extends     {System.out.println(" EXTENDS      -> " + yytext().toString());token(" EXTENDS     -> " + yytext());}
- false       {System.out.println(" FALSE        -> " + yytext().toString());token(" FALSE       -> " + yytext());}
- for         {System.out.println(" FOR          -> " + yytext().toString());token(" FOR         -> " + yytext());}
- if          {System.out.println(" IF           -> " + yytext().toString());token(" IF          -> " + yytext());}
- int         {System.out.println(" INT          -> " + yytext().toString());token(" INT         -> " + yytext());}
- new         {System.out.println(" NEW          -> " + yytext().toString());token(" NEW         -> " + yytext());}
- public      {System.out.println(" PUBLIC       -> " + yytext().toString());token(" PUBLIC      -> " + yytext());}
- return      {System.out.println(" RETURN       -> " + yytext().toString());token(" RETURN      -> " + yytext());}
- static      {System.out.println(" STATIC       -> " + yytext().toString());token(" STATIC      -> " + yytext());}
- this        {System.out.println(" THIS         -> " + yytext().toString());token(" THIS        -> " + yytext());}
- true        {System.out.println(" TRUE         -> " + yytext().toString());token(" TRUE        -> " + yytext());}
- void        {System.out.println(" VOID         -> " + yytext().toString());token(" VOID        -> " + yytext());}
- while       {System.out.println(" WHILE        -> " + yytext().toString());token(" WHILE       -> " + yytext());}
- super       {System.out.println(" SUPER        -> " + yytext().toString());token(" SUPER       -> " + yytext());}
- instanceof  {System.out.println(" INSTANCEOF   -> " + yytext().toString());token(" INSTANCEOF  -> " + yytext());}
- implements  {System.out.println(" IMPLEMENTS   -> " + yytext().toString());token(" IMPLEMENTS  -> " + yytext());}
- interface   {System.out.println(" INTERFACE    -> " + yytext().toString());token(" INTERFACE   -> " + yytext());}
- break       {System.out.println(" BREAK        -> " + yytext().toString());token(" BREAK       -> " + yytext());}
- case        {System.out.println(" CASE         -> " + yytext().toString());token(" CASE        -> " + yytext());}
- default     {System.out.println(" DEFAULT      -> " + yytext().toString());token(" DEFAULT     -> " + yytext());}
- switch      {System.out.println(" SWITCH       -> " + yytext().toString());token(" SWITCH      -> " + yytext());}
- finally     {System.out.println(" FINALLY      -> " + yytext().toString());token(" FINALLY     -> " + yytext());}
- throw       {System.out.println(" TROW         -> " + yytext().toString());token(" TROW        -> " + yytext());}
- throws      {System.out.println(" TROWS        -> " + yytext().toString());token(" TROWS       -> " + yytext());}
- import      {System.out.println(" IMPORT       -> " + yytext().toString());token(" IMPORT      -> " + yytext());}
- package     {System.out.println(" PACKAGE      -> " + yytext().toString());token(" PACKAGE     -> " + yytext());}
+ main        {System.out.println(" MAIN         -> " + yytext().toString());}
+ boolean     {System.out.println(" BOOLEAN      -> " + yytext().toString());}
+ class       {System.out.println(" CLASS        -> " + yytext().toString());}
+ do          {System.out.println(" DO           -> " +  yytext().toString());}
+ else        {System.out.println(" ELSE         -> " + yytext().toString());}
+ extends     {System.out.println(" EXTENDS      -> " + yytext().toString());}
+ false       {System.out.println(" FALSE        -> " + yytext().toString());}
+ for         {System.out.println(" FOR          -> " + yytext().toString());}
+ if          {System.out.println(" IF           -> " + yytext().toString());}
+ int         {System.out.println(" INT          -> " + yytext().toString());}
+ new         {System.out.println(" NEW          -> " + yytext().toString());}
+ public      {System.out.println(" PUBLIC       -> " + yytext().toString());}
+ return      {System.out.println(" RETURN       -> " + yytext().toString());}
+ static      {System.out.println(" STATIC       -> " + yytext().toString());}
+ this        {System.out.println(" THIS         -> " + yytext().toString());}
+ true        {System.out.println(" TRUE         -> " + yytext().toString());}
+ void        {System.out.println(" VOID         -> " + yytext().toString());}
+ while       {System.out.println(" WHILE        -> " + yytext().toString());}
+ super       {System.out.println(" SUPER        -> " + yytext().toString());}
+ instanceof  {System.out.println(" INSTANCEOF   -> " + yytext().toString());}
+ implements  {System.out.println(" IMPLEMENTS   -> " + yytext().toString());}
+ interface   {System.out.println(" INTERFACE    -> " + yytext().toString());}
+ break       {System.out.println(" BREAK        -> " + yytext().toString());}
+ case        {System.out.println(" CASE         -> " + yytext().toString());}
+ default     {System.out.println(" DEFAULT      -> " + yytext().toString());}
+ switch      {System.out.println(" SWITCH       -> " + yytext().toString());}
+ finally     {System.out.println(" FINALLY      -> " + yytext().toString());}
+ throw       {System.out.println(" TROW         -> " + yytext().toString());}
+ throws      {System.out.println(" TROWS        -> " + yytext().toString());}
+ import      {System.out.println(" IMPORT       -> " + yytext().toString());}
+ package     {System.out.println(" PACKAGE      -> " + yytext().toString());}
 
 // Delimitador
 

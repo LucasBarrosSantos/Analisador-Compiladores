@@ -12,7 +12,7 @@ import java.io.PrintWriter;
  * <a href="http://www.jflex.de/">JFlex</a> 1.6.1
  * from the specification file <tt>/home/lucas/NetBeansProjects/Analisador /src/lexer/arquivo.jflex</tt>
  */
-public class AnalisadorLexo {
+public final class AnalisadorLexo {
 
   /** This character denotes the end of file */
   public static final int YYEOF = -1;
@@ -40,9 +40,9 @@ public class AnalisadorLexo {
     "\11\0\2\3\2\0\1\3\22\0\1\3\1\53\3\0\1\56\1\51"+
     "\1\0\1\42\1\43\1\2\1\7\1\0\1\6\1\11\1\1\1\5"+
     "\11\10\1\0\1\57\1\54\1\52\1\55\2\0\4\4\1\12\25\4"+
-    "\1\46\1\0\1\47\1\0\1\4\1\0\1\17\1\14\1\21\1\23"+
-    "\1\13\1\26\1\41\1\34\1\30\1\4\1\37\1\16\1\36\1\20"+
-    "\1\15\1\32\1\4\1\27\1\22\1\25\1\33\1\35\1\31\1\24"+
+    "\1\46\1\0\1\47\1\0\1\4\1\0\1\15\1\20\1\23\1\25"+
+    "\1\13\1\30\1\41\1\35\1\16\1\4\1\37\1\22\1\14\1\17"+
+    "\1\21\1\33\1\4\1\31\1\24\1\27\1\34\1\36\1\32\1\26"+
     "\1\40\1\4\1\44\1\50\1\45\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff92\0";
 
   /** 
@@ -57,20 +57,20 @@ public class AnalisadorLexo {
 
   private static final String ZZ_ACTION_PACKED_0 =
     "\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7"+
-    "\1\10\15\5\1\11\1\12\1\13\1\14\1\15\1\16"+
-    "\2\1\1\17\1\20\1\21\1\22\1\23\1\24\1\0"+
-    "\2\25\1\17\13\5\1\26\7\5\1\27\5\5\1\30"+
-    "\1\31\1\32\1\20\1\33\1\34\2\0\4\5\1\35"+
-    "\11\5\1\36\4\5\1\37\5\5\1\40\1\41\1\42"+
-    "\4\5\1\43\4\5\1\44\1\5\1\45\12\5\1\46"+
-    "\1\41\2\5\1\47\1\50\2\5\1\51\1\5\1\52"+
-    "\1\53\6\5\1\54\2\5\3\41\2\5\1\55\1\56"+
-    "\1\5\1\57\1\5\1\60\2\5\1\61\2\5\1\62"+
-    "\1\63\1\64\1\65\1\66\3\5\1\67\4\5\1\70"+
-    "\1\5\1\71\1\72";
+    "\1\10\1\6\1\11\16\5\1\12\1\13\1\14\1\15"+
+    "\1\16\1\17\2\1\1\20\1\21\1\22\1\23\1\24"+
+    "\1\25\1\0\1\20\1\0\5\5\1\26\11\5\1\27"+
+    "\12\5\1\30\1\31\1\32\1\21\1\33\1\34\1\0"+
+    "\1\35\5\5\1\36\1\37\15\5\1\40\5\5\1\41"+
+    "\1\35\1\42\1\5\1\43\6\5\1\44\5\5\1\45"+
+    "\1\46\7\5\1\47\3\35\6\5\1\50\1\51\2\5"+
+    "\1\52\1\5\1\53\1\54\2\5\1\55\3\5\1\56"+
+    "\4\5\1\57\1\60\1\5\1\61\1\5\1\62\1\5"+
+    "\1\63\1\64\3\5\1\65\1\66\1\67\1\70\5\5"+
+    "\1\71\1\72\1\73";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[177];
+    int [] result = new int[181];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -95,32 +95,32 @@ public class AnalisadorLexo {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\60\0\140\0\220\0\60\0\300\0\220\0\220"+
-    "\0\60\0\360\0\u0120\0\u0150\0\u0180\0\u01b0\0\u01e0\0\u0210"+
-    "\0\u0240\0\u0270\0\u02a0\0\u02d0\0\u0300\0\u0330\0\60\0\60"+
-    "\0\60\0\60\0\60\0\60\0\u0360\0\u0390\0\u03c0\0\u03f0"+
-    "\0\u0420\0\u0450\0\60\0\60\0\u0480\0\u04b0\0\u04e0\0\60"+
-    "\0\u0510\0\u0540\0\u0570\0\u05a0\0\u05d0\0\u0600\0\u0630\0\u0660"+
-    "\0\u0690\0\u06c0\0\u06f0\0\300\0\u0720\0\u0750\0\u0780\0\u07b0"+
-    "\0\u07e0\0\u0810\0\u0840\0\300\0\u0870\0\u08a0\0\u08d0\0\u0900"+
-    "\0\u0930\0\60\0\60\0\60\0\60\0\60\0\60\0\u0960"+
-    "\0\u0990\0\u09c0\0\u09f0\0\u0a20\0\u0a50\0\300\0\u0a80\0\u0ab0"+
-    "\0\u0ae0\0\u0b10\0\u0b40\0\u0b70\0\u0ba0\0\u0bd0\0\u0c00\0\300"+
-    "\0\u0c30\0\u0c60\0\u0c90\0\u0cc0\0\u0cf0\0\u0d20\0\u0d50\0\u0d80"+
-    "\0\u0db0\0\u0de0\0\60\0\u0e10\0\300\0\u0e40\0\u0e70\0\u0ea0"+
-    "\0\u0ed0\0\300\0\u0f00\0\u0f30\0\u0f60\0\u0f90\0\300\0\u0fc0"+
-    "\0\300\0\u0ff0\0\u1020\0\u1050\0\u1080\0\u10b0\0\u10e0\0\u1110"+
-    "\0\u1140\0\u1170\0\u11a0\0\300\0\u11d0\0\u1200\0\u1230\0\300"+
-    "\0\300\0\u1260\0\u1290\0\300\0\u12c0\0\u12f0\0\300\0\u1320"+
-    "\0\u1350\0\u1380\0\u13b0\0\u13e0\0\u1410\0\300\0\u1440\0\u1470"+
-    "\0\u14a0\0\60\0\u14d0\0\u1500\0\u1530\0\300\0\300\0\u1560"+
-    "\0\300\0\u1590\0\300\0\u15c0\0\u15f0\0\300\0\u1620\0\u1650"+
-    "\0\300\0\300\0\300\0\300\0\300\0\u1680\0\u16b0\0\u16e0"+
-    "\0\300\0\u1710\0\u1740\0\u1770\0\u17a0\0\300\0\u17d0\0\300"+
-    "\0\300";
+    "\0\0\0\60\0\140\0\220\0\60\0\300\0\360\0\220"+
+    "\0\220\0\u0120\0\60\0\u0150\0\u0180\0\u01b0\0\u01e0\0\u0210"+
+    "\0\u0240\0\u0270\0\u02a0\0\u02d0\0\u0300\0\u0330\0\u0360\0\u0390"+
+    "\0\u03c0\0\60\0\60\0\60\0\60\0\60\0\60\0\u03f0"+
+    "\0\u0420\0\u0450\0\u0480\0\u04b0\0\u04e0\0\60\0\60\0\u0510"+
+    "\0\60\0\u0540\0\u0570\0\u05a0\0\u05d0\0\u0600\0\u0630\0\300"+
+    "\0\u0660\0\u0690\0\u06c0\0\u06f0\0\u0720\0\u0750\0\u0780\0\u07b0"+
+    "\0\u07e0\0\300\0\u0810\0\u0840\0\u0870\0\u08a0\0\u08d0\0\u0900"+
+    "\0\u0930\0\u0960\0\u0990\0\u09c0\0\60\0\60\0\60\0\60"+
+    "\0\60\0\60\0\u09f0\0\u0a20\0\u0a50\0\u0a80\0\u0ab0\0\u0ae0"+
+    "\0\u0b10\0\u0b40\0\300\0\u0b70\0\u0ba0\0\u0bd0\0\u0c00\0\u0c30"+
+    "\0\u0c60\0\u0c90\0\u0cc0\0\u0cf0\0\u0d20\0\u0d50\0\u0d80\0\u0db0"+
+    "\0\300\0\u0de0\0\u0e10\0\u0e40\0\u0e70\0\u0ea0\0\60\0\u0ed0"+
+    "\0\300\0\u0f00\0\300\0\u0f30\0\u0f60\0\u0f90\0\u0fc0\0\u0ff0"+
+    "\0\u1020\0\300\0\u1050\0\u1080\0\u10b0\0\u10e0\0\u1110\0\300"+
+    "\0\300\0\u1140\0\u1170\0\u11a0\0\u11d0\0\u1200\0\u1230\0\u1260"+
+    "\0\300\0\u1290\0\60\0\u12c0\0\u12f0\0\u1320\0\u1350\0\u1380"+
+    "\0\u13b0\0\u13e0\0\300\0\300\0\u1410\0\u1440\0\300\0\u1470"+
+    "\0\u14a0\0\300\0\u14d0\0\u1500\0\300\0\u1530\0\u1560\0\u1590"+
+    "\0\300\0\u15c0\0\u15f0\0\u1620\0\u1650\0\300\0\300\0\u1680"+
+    "\0\300\0\u16b0\0\300\0\u16e0\0\300\0\300\0\u1710\0\u1740"+
+    "\0\u1770\0\300\0\300\0\300\0\300\0\u17a0\0\u17d0\0\u1800"+
+    "\0\u1830\0\u1860\0\300\0\300\0\300";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[177];
+    int [] result = new int[181];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -143,135 +143,137 @@ public class AnalisadorLexo {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\4\1\5\1\6\1\2\1\7\1\10"+
-    "\1\2\1\11\1\6\1\12\1\13\3\6\1\14\1\15"+
-    "\1\16\1\17\1\6\1\20\1\21\1\22\1\23\1\24"+
-    "\1\25\2\6\1\26\4\6\1\27\1\30\1\31\1\32"+
-    "\1\33\1\34\1\35\1\36\1\37\1\40\1\41\1\42"+
-    "\1\43\1\44\62\0\1\45\2\0\1\46\2\0\1\47"+
-    "\41\0\1\50\12\0\1\46\2\0\1\47\41\0\1\50"+
-    "\11\0\2\6\2\0\1\6\1\0\30\6\22\0\2\6"+
-    "\2\0\1\6\1\0\4\6\1\51\5\6\1\52\15\6"+
-    "\22\0\2\6\2\0\1\6\1\0\3\6\1\53\11\6"+
-    "\1\54\12\6\22\0\2\6\2\0\1\6\1\0\1\6"+
-    "\1\55\26\6\22\0\2\6\2\0\1\6\1\0\4\6"+
-    "\1\56\1\57\22\6\22\0\2\6\2\0\1\6\1\0"+
-    "\13\6\1\60\3\6\1\61\1\6\1\62\6\6\22\0"+
-    "\2\6\2\0\1\6\1\0\1\6\1\63\1\6\1\64"+
-    "\24\6\22\0\2\6\2\0\1\6\1\0\15\6\1\65"+
-    "\4\6\1\66\5\6\22\0\2\6\2\0\1\6\1\0"+
-    "\3\6\1\67\1\6\1\70\10\6\1\71\11\6\22\0"+
-    "\2\6\2\0\1\6\1\0\1\6\1\72\26\6\22\0"+
-    "\2\6\2\0\1\6\1\0\6\6\1\73\5\6\1\74"+
-    "\7\6\1\75\3\6\22\0\2\6\2\0\1\6\1\0"+
-    "\22\6\1\76\5\6\22\0\2\6\2\0\1\6\1\0"+
-    "\5\6\1\77\13\6\1\100\6\6\22\0\2\6\2\0"+
-    "\1\6\1\0\3\6\1\101\24\6\66\0\1\102\60\0"+
-    "\1\103\60\0\1\104\57\0\1\105\57\0\1\106\57\0"+
-    "\1\107\5\0\2\45\1\110\55\45\11\0\1\111\53\0"+
-    "\1\47\2\0\1\47\1\111\52\0\2\6\2\0\1\6"+
-    "\1\0\10\6\1\112\17\6\22\0\2\6\2\0\1\6"+
-    "\1\0\13\6\1\113\14\6\22\0\2\6\2\0\1\6"+
-    "\1\0\3\6\1\114\24\6\22\0\2\6\2\0\1\6"+
-    "\1\0\1\6\1\115\26\6\22\0\2\6\2\0\1\6"+
-    "\1\0\17\6\1\116\10\6\22\0\2\6\2\0\1\6"+
-    "\1\0\5\6\1\117\22\6\22\0\2\6\2\0\1\6"+
-    "\1\0\10\6\1\120\17\6\22\0\2\6\2\0\1\6"+
-    "\1\0\5\6\1\121\22\6\22\0\2\6\2\0\1\6"+
-    "\1\0\16\6\1\122\11\6\22\0\2\6\2\0\1\6"+
+    "\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11"+
+    "\1\12\1\13\1\6\1\14\1\15\1\6\1\16\1\17"+
+    "\1\20\2\6\1\21\1\22\1\23\1\6\1\24\1\25"+
+    "\1\26\1\27\1\30\2\6\1\31\3\6\1\32\1\33"+
+    "\1\34\1\35\1\36\1\37\1\40\1\41\1\42\1\43"+
+    "\1\44\1\45\1\46\1\47\62\0\1\50\47\0\1\51"+
+    "\57\0\1\51\11\0\2\6\2\0\1\6\1\0\30\6"+
+    "\27\0\1\52\53\0\1\12\2\0\1\12\1\52\52\0"+
+    "\2\6\2\0\1\6\1\0\10\6\1\53\3\6\1\54"+
+    "\13\6\22\0\2\6\2\0\1\6\1\0\3\6\1\55"+
+    "\24\6\22\0\2\6\2\0\1\6\1\0\2\6\1\56"+
+    "\2\6\1\57\10\6\1\60\11\6\22\0\2\6\2\0"+
+    "\1\6\1\0\1\6\1\61\26\6\22\0\2\6\2\0"+
+    "\1\6\1\0\7\6\1\62\7\6\1\63\10\6\22\0"+
+    "\2\6\2\0\1\6\1\0\3\6\1\64\4\6\1\65"+
+    "\17\6\22\0\2\6\2\0\1\6\1\0\15\6\1\66"+
+    "\2\6\1\67\1\6\1\70\5\6\22\0\2\6\2\0"+
+    "\1\6\1\0\1\6\1\71\5\6\1\72\20\6\22\0"+
+    "\2\6\2\0\1\6\1\0\17\6\1\73\3\6\1\74"+
+    "\4\6\22\0\2\6\2\0\1\6\1\0\3\6\1\75"+
+    "\1\76\2\6\1\77\20\6\22\0\2\6\2\0\1\6"+
+    "\1\0\1\6\1\100\26\6\22\0\2\6\2\0\1\6"+
+    "\1\0\23\6\1\101\4\6\22\0\2\6\2\0\1\6"+
+    "\1\0\3\6\1\102\16\6\1\103\5\6\22\0\2\6"+
+    "\2\0\1\6\1\0\7\6\1\104\20\6\66\0\1\105"+
+    "\60\0\1\106\60\0\1\107\57\0\1\110\57\0\1\111"+
+    "\57\0\1\112\5\0\2\50\1\113\55\50\5\0\1\114"+
+    "\2\0\1\114\53\0\2\6\2\0\1\6\1\0\12\6"+
+    "\1\115\15\6\22\0\2\6\2\0\1\6\1\0\15\6"+
+    "\1\116\12\6\22\0\2\6\2\0\1\6\1\0\4\6"+
+    "\1\117\23\6\22\0\2\6\2\0\1\6\1\0\21\6"+
+    "\1\120\6\6\22\0\2\6\2\0\1\6\1\0\12\6"+
+    "\1\121\2\6\1\122\12\6\22\0\2\6\2\0\1\6"+
     "\1\0\20\6\1\123\7\6\22\0\2\6\2\0\1\6"+
-    "\1\0\14\6\1\124\13\6\22\0\2\6\2\0\1\6"+
-    "\1\0\21\6\1\125\6\6\22\0\2\6\2\0\1\6"+
-    "\1\0\15\6\1\126\1\127\11\6\22\0\2\6\2\0"+
-    "\1\6\1\0\15\6\1\130\12\6\22\0\2\6\2\0"+
-    "\1\6\1\0\4\6\1\131\23\6\22\0\2\6\2\0"+
-    "\1\6\1\0\6\6\1\132\21\6\22\0\2\6\2\0"+
-    "\1\6\1\0\13\6\1\133\14\6\22\0\2\6\2\0"+
-    "\1\6\1\0\10\6\1\134\2\6\1\135\14\6\22\0"+
-    "\2\6\2\0\1\6\1\0\20\6\1\136\7\6\22\0"+
-    "\2\6\2\0\1\6\1\0\16\6\1\137\11\6\22\0"+
-    "\2\6\2\0\1\6\1\0\7\6\1\140\20\6\22\0"+
-    "\2\6\2\0\1\6\1\0\2\6\1\141\25\6\22\0"+
-    "\2\6\2\0\1\6\1\0\16\6\1\142\11\6\16\0"+
-    "\1\45\1\143\1\110\55\45\5\0\1\144\2\0\1\144"+
-    "\53\0\2\6\2\0\1\6\1\0\1\6\1\145\26\6"+
-    "\22\0\2\6\2\0\1\6\1\0\1\6\1\146\26\6"+
-    "\22\0\2\6\2\0\1\6\1\0\4\6\1\147\23\6"+
-    "\22\0\2\6\2\0\1\6\1\0\5\6\1\150\22\6"+
-    "\22\0\2\6\2\0\1\6\1\0\10\6\1\151\17\6"+
-    "\22\0\2\6\2\0\1\6\1\0\1\6\1\152\26\6"+
-    "\22\0\2\6\2\0\1\6\1\0\13\6\1\153\14\6"+
-    "\22\0\2\6\2\0\1\6\1\0\13\6\1\154\14\6"+
-    "\22\0\2\6\2\0\1\6\1\0\1\6\1\155\26\6"+
-    "\22\0\2\6\2\0\1\6\1\0\5\6\1\156\22\6"+
-    "\22\0\2\6\2\0\1\6\1\0\1\6\1\157\26\6"+
-    "\22\0\2\6\2\0\1\6\1\0\3\6\1\160\24\6"+
-    "\22\0\2\6\2\0\1\6\1\0\10\6\1\161\17\6"+
-    "\22\0\2\6\2\0\1\6\1\0\10\6\1\162\17\6"+
-    "\22\0\2\6\2\0\1\6\1\0\5\6\1\163\22\6"+
-    "\22\0\2\6\2\0\1\6\1\0\21\6\1\164\6\6"+
-    "\22\0\2\6\2\0\1\6\1\0\13\6\1\165\14\6"+
-    "\22\0\2\6\2\0\1\6\1\0\1\6\1\166\26\6"+
-    "\22\0\2\6\2\0\1\6\1\0\3\6\1\167\1\170"+
-    "\23\6\22\0\2\6\2\0\1\6\1\0\4\6\1\171"+
-    "\23\6\22\0\2\6\2\0\1\6\1\0\25\6\1\172"+
-    "\2\6\22\0\2\6\2\0\1\6\1\0\4\6\1\173"+
-    "\23\6\22\0\2\6\2\0\1\6\1\0\11\6\1\174"+
-    "\16\6\23\0\1\144\2\0\1\144\1\0\2\175\50\0"+
-    "\2\6\2\0\1\6\1\0\6\6\1\176\21\6\22\0"+
-    "\2\6\2\0\1\6\1\0\1\6\1\177\26\6\22\0"+
-    "\2\6\2\0\1\6\1\0\25\6\1\200\2\6\22\0"+
-    "\2\6\2\0\1\6\1\0\10\6\1\201\17\6\22\0"+
-    "\2\6\2\0\1\6\1\0\16\6\1\202\11\6\22\0"+
-    "\2\6\2\0\1\6\1\0\7\6\1\203\20\6\22\0"+
-    "\2\6\2\0\1\6\1\0\15\6\1\204\12\6\22\0"+
-    "\2\6\2\0\1\6\1\0\21\6\1\205\6\6\22\0"+
-    "\2\6\2\0\1\6\1\0\17\6\1\206\10\6\22\0"+
-    "\2\6\2\0\1\6\1\0\1\6\1\207\26\6\22\0"+
-    "\2\6\2\0\1\6\1\0\4\6\1\210\23\6\22\0"+
-    "\2\6\2\0\1\6\1\0\15\6\1\211\12\6\22\0"+
-    "\2\6\2\0\1\6\1\0\5\6\1\212\22\6\22\0"+
-    "\2\6\2\0\1\6\1\0\15\6\1\213\12\6\22\0"+
-    "\2\6\2\0\1\6\1\0\15\6\1\214\12\6\22\0"+
-    "\2\6\2\0\1\6\1\0\1\6\1\215\26\6\22\0"+
-    "\2\6\2\0\1\6\1\0\1\6\1\216\26\6\22\0"+
-    "\2\6\2\0\1\6\1\0\5\6\1\217\22\6\22\0"+
-    "\2\6\2\0\1\6\1\0\16\6\1\220\11\6\17\0"+
-    "\2\221\2\0\1\222\2\221\1\223\53\0\2\6\2\0"+
-    "\1\6\1\0\11\6\1\224\16\6\22\0\2\6\2\0"+
-    "\1\6\1\0\5\6\1\225\22\6\22\0\2\6\2\0"+
-    "\1\6\1\0\7\6\1\226\20\6\22\0\2\6\2\0"+
-    "\1\6\1\0\22\6\1\227\5\6\22\0\2\6\2\0"+
-    "\1\6\1\0\4\6\1\230\23\6\22\0\2\6\2\0"+
-    "\1\6\1\0\10\6\1\231\17\6\22\0\2\6\2\0"+
-    "\1\6\1\0\4\6\1\232\23\6\22\0\2\6\2\0"+
-    "\1\6\1\0\6\6\1\233\21\6\22\0\2\6\2\0"+
-    "\1\6\1\0\6\6\1\234\21\6\22\0\2\6\2\0"+
-    "\1\6\1\0\14\6\1\235\13\6\22\0\2\6\2\0"+
-    "\1\6\1\0\13\6\1\236\14\6\22\0\2\6\2\0"+
-    "\1\6\1\0\24\6\1\237\3\6\22\0\2\6\2\0"+
-    "\1\6\1\0\27\6\1\240\22\0\2\6\2\0\1\6"+
-    "\1\0\7\6\1\241\20\6\23\0\1\222\2\0\1\223"+
-    "\54\0\1\223\2\0\1\223\53\0\2\6\2\0\1\6"+
-    "\1\0\10\6\1\242\17\6\22\0\2\6\2\0\1\6"+
-    "\1\0\6\6\1\243\21\6\22\0\2\6\2\0\1\6"+
-    "\1\0\13\6\1\244\14\6\22\0\2\6\2\0\1\6"+
-    "\1\0\26\6\1\245\1\6\22\0\2\6\2\0\1\6"+
-    "\1\0\7\6\1\246\20\6\22\0\2\6\2\0\1\6"+
-    "\1\0\5\6\1\247\22\6\22\0\2\6\2\0\1\6"+
-    "\1\0\1\6\1\250\26\6\22\0\2\6\2\0\1\6"+
-    "\1\0\1\6\1\251\26\6\22\0\2\6\2\0\1\6"+
-    "\1\0\1\6\1\252\26\6\22\0\2\6\2\0\1\6"+
-    "\1\0\7\6\1\253\20\6\22\0\2\6\2\0\1\6"+
-    "\1\0\6\6\1\254\21\6\22\0\2\6\2\0\1\6"+
-    "\1\0\3\6\1\255\24\6\22\0\2\6\2\0\1\6"+
-    "\1\0\1\6\1\256\26\6\22\0\2\6\2\0\1\6"+
-    "\1\0\13\6\1\257\14\6\22\0\2\6\2\0\1\6"+
-    "\1\0\14\6\1\260\13\6\22\0\2\6\2\0\1\6"+
-    "\1\0\10\6\1\261\17\6\16\0";
+    "\1\0\7\6\1\124\20\6\22\0\2\6\2\0\1\6"+
+    "\1\0\1\6\1\125\26\6\22\0\2\6\2\0\1\6"+
+    "\1\0\12\6\1\126\15\6\22\0\2\6\2\0\1\6"+
+    "\1\0\3\6\1\127\24\6\22\0\2\6\2\0\1\6"+
+    "\1\0\3\6\1\130\24\6\22\0\2\6\2\0\1\6"+
+    "\1\0\4\6\1\131\23\6\22\0\2\6\2\0\1\6"+
+    "\1\0\21\6\1\132\6\6\22\0\2\6\2\0\1\6"+
+    "\1\0\16\6\1\133\11\6\22\0\2\6\2\0\1\6"+
+    "\1\0\22\6\1\134\5\6\22\0\2\6\2\0\1\6"+
+    "\1\0\4\6\1\135\12\6\1\136\10\6\22\0\2\6"+
+    "\2\0\1\6\1\0\10\6\1\137\17\6\22\0\2\6"+
+    "\2\0\1\6\1\0\5\6\1\140\22\6\22\0\2\6"+
+    "\2\0\1\6\1\0\17\6\1\141\10\6\22\0\2\6"+
+    "\2\0\1\6\1\0\15\6\1\142\12\6\22\0\2\6"+
+    "\2\0\1\6\1\0\4\6\1\143\23\6\22\0\2\6"+
+    "\2\0\1\6\1\0\11\6\1\144\16\6\22\0\2\6"+
+    "\2\0\1\6\1\0\6\6\1\145\21\6\22\0\2\6"+
+    "\2\0\1\6\1\0\4\6\1\146\23\6\16\0\1\50"+
+    "\1\147\1\113\55\50\5\0\1\114\2\0\1\114\1\0"+
+    "\2\150\50\0\2\6\2\0\1\6\1\0\1\6\1\151"+
+    "\26\6\22\0\2\6\2\0\1\6\1\0\1\6\1\152"+
+    "\26\6\22\0\2\6\2\0\1\6\1\0\5\6\1\153"+
+    "\22\6\22\0\2\6\2\0\1\6\1\0\7\6\1\154"+
+    "\1\155\17\6\22\0\2\6\2\0\1\6\1\0\15\6"+
+    "\1\156\12\6\22\0\2\6\2\0\1\6\1\0\1\6"+
+    "\1\157\26\6\22\0\2\6\2\0\1\6\1\0\10\6"+
+    "\1\160\17\6\22\0\2\6\2\0\1\6\1\0\3\6"+
+    "\1\161\24\6\22\0\2\6\2\0\1\6\1\0\1\6"+
+    "\1\162\26\6\22\0\2\6\2\0\1\6\1\0\12\6"+
+    "\1\163\15\6\22\0\2\6\2\0\1\6\1\0\15\6"+
+    "\1\164\12\6\22\0\2\6\2\0\1\6\1\0\15\6"+
+    "\1\165\12\6\22\0\2\6\2\0\1\6\1\0\1\6"+
+    "\1\166\26\6\22\0\2\6\2\0\1\6\1\0\3\6"+
+    "\1\167\24\6\22\0\2\6\2\0\1\6\1\0\1\6"+
+    "\1\170\26\6\22\0\2\6\2\0\1\6\1\0\12\6"+
+    "\1\171\15\6\22\0\2\6\2\0\1\6\1\0\7\6"+
+    "\1\172\20\6\22\0\2\6\2\0\1\6\1\0\12\6"+
+    "\1\173\15\6\22\0\2\6\2\0\1\6\1\0\3\6"+
+    "\1\174\24\6\22\0\2\6\2\0\1\6\1\0\22\6"+
+    "\1\175\5\6\22\0\2\6\2\0\1\6\1\0\10\6"+
+    "\1\176\17\6\22\0\2\6\2\0\1\6\1\0\25\6"+
+    "\1\177\2\6\22\0\2\6\2\0\1\6\1\0\10\6"+
+    "\1\200\17\6\22\0\2\6\2\0\1\6\1\0\13\6"+
+    "\1\201\14\6\17\0\2\202\2\0\1\203\2\202\1\204"+
+    "\53\0\2\6\2\0\1\6\1\0\5\6\1\205\22\6"+
+    "\22\0\2\6\2\0\1\6\1\0\17\6\1\206\10\6"+
+    "\22\0\2\6\2\0\1\6\1\0\1\6\1\207\26\6"+
+    "\22\0\2\6\2\0\1\6\1\0\3\6\1\210\24\6"+
+    "\22\0\2\6\2\0\1\6\1\0\17\6\1\211\10\6"+
+    "\22\0\2\6\2\0\1\6\1\0\1\6\1\212\26\6"+
+    "\22\0\2\6\2\0\1\6\1\0\25\6\1\213\2\6"+
+    "\22\0\2\6\2\0\1\6\1\0\12\6\1\214\15\6"+
+    "\22\0\2\6\2\0\1\6\1\0\4\6\1\215\23\6"+
+    "\22\0\2\6\2\0\1\6\1\0\11\6\1\216\16\6"+
+    "\22\0\2\6\2\0\1\6\1\0\17\6\1\217\10\6"+
+    "\22\0\2\6\2\0\1\6\1\0\22\6\1\220\5\6"+
+    "\22\0\2\6\2\0\1\6\1\0\20\6\1\221\7\6"+
+    "\22\0\2\6\2\0\1\6\1\0\1\6\1\222\26\6"+
+    "\22\0\2\6\2\0\1\6\1\0\10\6\1\223\17\6"+
+    "\22\0\2\6\2\0\1\6\1\0\17\6\1\224\10\6"+
+    "\22\0\2\6\2\0\1\6\1\0\1\6\1\225\26\6"+
+    "\22\0\2\6\2\0\1\6\1\0\3\6\1\226\24\6"+
+    "\22\0\2\6\2\0\1\6\1\0\4\6\1\227\23\6"+
+    "\23\0\1\203\2\0\1\204\54\0\1\204\2\0\1\204"+
+    "\53\0\2\6\2\0\1\6\1\0\13\6\1\230\14\6"+
+    "\22\0\2\6\2\0\1\6\1\0\15\6\1\231\12\6"+
+    "\22\0\2\6\2\0\1\6\1\0\2\6\1\232\25\6"+
+    "\22\0\2\6\2\0\1\6\1\0\5\6\1\233\22\6"+
+    "\22\0\2\6\2\0\1\6\1\0\16\6\1\234\11\6"+
+    "\22\0\2\6\2\0\1\6\1\0\3\6\1\235\24\6"+
+    "\22\0\2\6\2\0\1\6\1\0\11\6\1\236\16\6"+
+    "\22\0\2\6\2\0\1\6\1\0\23\6\1\237\4\6"+
+    "\22\0\2\6\2\0\1\6\1\0\10\6\1\240\17\6"+
+    "\22\0\2\6\2\0\1\6\1\0\12\6\1\241\15\6"+
+    "\22\0\2\6\2\0\1\6\1\0\10\6\1\242\17\6"+
+    "\22\0\2\6\2\0\1\6\1\0\5\6\1\243\22\6"+
+    "\22\0\2\6\2\0\1\6\1\0\27\6\1\244\22\0"+
+    "\2\6\2\0\1\6\1\0\11\6\1\245\16\6\22\0"+
+    "\2\6\2\0\1\6\1\0\12\6\1\246\15\6\22\0"+
+    "\2\6\2\0\1\6\1\0\1\6\1\247\26\6\22\0"+
+    "\2\6\2\0\1\6\1\0\11\6\1\250\16\6\22\0"+
+    "\2\6\2\0\1\6\1\0\3\6\1\251\24\6\22\0"+
+    "\2\6\2\0\1\6\1\0\5\6\1\252\22\6\22\0"+
+    "\2\6\2\0\1\6\1\0\15\6\1\253\12\6\22\0"+
+    "\2\6\2\0\1\6\1\0\26\6\1\254\1\6\22\0"+
+    "\2\6\2\0\1\6\1\0\1\6\1\255\26\6\22\0"+
+    "\2\6\2\0\1\6\1\0\5\6\1\256\22\6\22\0"+
+    "\2\6\2\0\1\6\1\0\1\6\1\257\26\6\22\0"+
+    "\2\6\2\0\1\6\1\0\11\6\1\260\16\6\22\0"+
+    "\2\6\2\0\1\6\1\0\15\6\1\261\12\6\22\0"+
+    "\2\6\2\0\1\6\1\0\7\6\1\262\20\6\22\0"+
+    "\2\6\2\0\1\6\1\0\1\6\1\263\26\6\22\0"+
+    "\2\6\2\0\1\6\1\0\12\6\1\264\15\6\22\0"+
+    "\2\6\2\0\1\6\1\0\16\6\1\265\11\6\16\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[6144];
+    int [] result = new int[6288];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -309,12 +311,12 @@ public class AnalisadorLexo {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\2\1\1\11\3\1\1\11\15\1\6\11"+
-    "\6\1\2\11\1\0\2\1\1\11\31\1\6\11\2\0"+
-    "\31\1\1\11\56\1\1\11\37\1";
+    "\1\0\1\11\2\1\1\11\5\1\1\11\16\1\6\11"+
+    "\6\1\2\11\1\0\1\11\1\0\32\1\6\11\1\0"+
+    "\33\1\1\11\33\1\1\11\62\1";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[177];
+    int [] result = new int[181];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -797,235 +799,239 @@ public class AnalisadorLexo {
           case 1: 
             { System.out.print(yytext());
             }
-          case 59: break;
+          case 60: break;
           case 2: 
             { System.out.println(" Op_divisão        -> " + yytext().toString());token(" Op_divisão    -> " + yytext());
             }
-          case 60: break;
+          case 61: break;
           case 3: 
             { System.out.println(" Op_multiplicação  -> " + yytext().toString());token(" Op_multiplicação -> " + yytext());
             }
-          case 61: break;
+          case 62: break;
           case 4: 
             { /* Fazer Nada */
             }
-          case 62: break;
+          case 63: break;
           case 5: 
             { System.out.println(" id                        -> " + yytext().toString());token(" id          -> " + yytext());
             }
-          case 63: break;
-          case 6: 
-            { System.out.println(" Op_subtração      -> " + yytext().toString());token(" Op_subtração  -> " + yytext());
-            }
           case 64: break;
-          case 7: 
-            { System.out.println(" Op_adção          -> " + yytext().toString());token(" Op_adção -> " + yytext());
-            }
-          case 65: break;
-          case 8: 
-            { System.out.println(" Ponto             -> " + yytext().toString());token(" Ponto       -> " + yytext());
-            }
-          case 66: break;
-          case 9: 
-            { System.out.println(" Abrepar           -> " + yytext().toString());token(" Abrepar     -> " + yytext());
-            }
-          case 67: break;
-          case 10: 
-            { System.out.println(" Fechapar          -> " + yytext().toString());token(" Fechapar    -> " + yytext());
-            }
-          case 68: break;
-          case 11: 
-            { System.out.println(" Abrechave         -> " + yytext().toString());token(" Abrechave   -> " + yytext());
-            }
-          case 69: break;
-          case 12: 
-            { System.out.println(" Fechachave        -> " + yytext().toString());token(" Fechachave  -> " + yytext());
-            }
-          case 70: break;
-          case 13: 
-            { System.out.println(" Abrecolc          -> " + yytext().toString());token(" Abrecolc    -> " + yytext());
-            }
-          case 71: break;
-          case 14: 
-            { System.out.println(" Fechacolc         -> " + yytext().toString());token(" Fechacolc   -> " + yytext());
-            }
-          case 72: break;
-          case 15: 
-            { System.out.println(" Atrib_            -> " + yytext().toString());token(" Atrib_      -> " + yytext());
-            }
-          case 73: break;
-          case 16: 
-            { System.out.println(" Op_diferente_de   -> " + yytext().toString());token(" Op_diferente_de -> " + yytext());
-            }
-          case 74: break;
-          case 17: 
-            { System.out.println(" Op_menor_que      -> " +yytext().toString());token(" Op_menor_que  -> " + yytext());
-            }
-          case 75: break;
-          case 18: 
-            { System.out.println(" Op_maior_que      -> " + yytext().toString());token(" Op_maior_que -> " + yytext());
-            }
-          case 76: break;
-          case 19: 
-            { System.out.println(" Op_mod            -> " + yytext().toString());token(" Op_mod        -> " + yytext());
-            }
-          case 77: break;
-          case 20: 
-            { System.out.println(" Term_ponto_e_virgula -> " + yytext().toString());token(" Term_ponto_e_virgula -> " + yytext());
-            }
-          case 78: break;
-          case 21: 
+          case 6: 
             { System.out.println(" inteiro                   -> " + yytext().toString());token(" inteiro     -> " + yytext());
             }
+          case 65: break;
+          case 7: 
+            { System.out.println(" Op_subtração      -> " + yytext().toString());token(" Op_subtração  -> " + yytext());
+            }
+          case 66: break;
+          case 8: 
+            { System.out.println(" Op_adção          -> " + yytext().toString());token(" Op_adção -> " + yytext());
+            }
+          case 67: break;
+          case 9: 
+            { System.out.println(" Ponto             -> " + yytext().toString());token(" Ponto       -> " + yytext());
+            }
+          case 68: break;
+          case 10: 
+            { System.out.println(" Abrepar           -> " + yytext().toString());token(" Abrepar     -> " + yytext());
+            }
+          case 69: break;
+          case 11: 
+            { System.out.println(" Fechapar          -> " + yytext().toString());token(" Fechapar    -> " + yytext());
+            }
+          case 70: break;
+          case 12: 
+            { System.out.println(" Abrechave         -> " + yytext().toString());token(" Abrechave   -> " + yytext());
+            }
+          case 71: break;
+          case 13: 
+            { System.out.println(" Fechachave        -> " + yytext().toString());token(" Fechachave  -> " + yytext());
+            }
+          case 72: break;
+          case 14: 
+            { System.out.println(" Abrecolc          -> " + yytext().toString());token(" Abrecolc    -> " + yytext());
+            }
+          case 73: break;
+          case 15: 
+            { System.out.println(" Fechacolc         -> " + yytext().toString());token(" Fechacolc   -> " + yytext());
+            }
+          case 74: break;
+          case 16: 
+            { System.out.println(" Atrib_            -> " + yytext().toString());token(" Atrib_      -> " + yytext());
+            }
+          case 75: break;
+          case 17: 
+            { System.out.println(" Op_diferente_de   -> " + yytext().toString());token(" Op_diferente_de -> " + yytext());
+            }
+          case 76: break;
+          case 18: 
+            { System.out.println(" Op_menor_que      -> " +yytext().toString());token(" Op_menor_que  -> " + yytext());
+            }
+          case 77: break;
+          case 19: 
+            { System.out.println(" Op_maior_que      -> " + yytext().toString());token(" Op_maior_que -> " + yytext());
+            }
+          case 78: break;
+          case 20: 
+            { System.out.println(" Op_mod            -> " + yytext().toString());token(" Op_mod        -> " + yytext());
+            }
           case 79: break;
-          case 22: 
-            { System.out.println(" DO           -> " +  yytext().toString());token(" DO         -> " + yytext());
+          case 21: 
+            { System.out.println(" Term_ponto_e_virgula -> " + yytext().toString());token(" Term_ponto_e_virgula -> " + yytext());
             }
           case 80: break;
-          case 23: 
-            { System.out.println(" IF           -> " + yytext().toString());token(" IF          -> " + yytext());
+          case 22: 
+            { System.out.println(" IF           -> " + yytext().toString());
             }
           case 81: break;
+          case 23: 
+            { System.out.println(" DO           -> " +  yytext().toString());
+            }
+          case 82: break;
           case 24: 
             { System.out.println(" Op_ou             -> " + yytext().toString());token(" Op_ou       -> " + yytext());
             }
-          case 82: break;
+          case 83: break;
           case 25: 
             { System.out.println(" Op_e              -> " + yytext().toString());token(" Op_e        -> " + yytext());
             }
-          case 83: break;
+          case 84: break;
           case 26: 
             { System.out.println(" Op_igual_a        -> " + yytext().toString());token(" Op_igual_a  -> " + yytext());
             }
-          case 84: break;
+          case 85: break;
           case 27: 
             { System.out.println(" Op_menor_igual_a  -> " + yytext().toString());token(" Op_menor_igual_a -> " + yytext());
             }
-          case 85: break;
+          case 86: break;
           case 28: 
             { System.out.println(" Op_maior_igual_a  -> " + yytext().toString());token(" Op_maior_igual_a -> " + yytext());
             }
-          case 86: break;
-          case 29: 
-            { System.out.println(" NEW          -> " + yytext().toString());token(" NEW         -> " + yytext());
-            }
           case 87: break;
-          case 30: 
-            { System.out.println(" FOR          -> " + yytext().toString());token(" FOR         -> " + yytext());
-            }
-          case 88: break;
-          case 31: 
-            { System.out.println(" INT          -> " + yytext().toString());token(" INT         -> " + yytext());
-            }
-          case 89: break;
-          case 32: 
-            { System.out.println(" Comentario                -> " + yytext().toString());token(" Comentario  -> " + yytext());
-            }
-          case 90: break;
-          case 33: 
+          case 29: 
             { System.out.println(" Float                     -> " + yytext().toString());token(" Float       -> " + yytext());
             }
+          case 88: break;
+          case 30: 
+            { System.out.println(" INT          -> " + yytext().toString());
+            }
+          case 89: break;
+          case 31: 
+            { System.out.println(" NEW          -> " + yytext().toString());
+            }
+          case 90: break;
+          case 32: 
+            { System.out.println(" FOR          -> " + yytext().toString());
+            }
           case 91: break;
-          case 34: 
-            { System.out.println(" ELSE         -> " + yytext().toString());token(" ELSE        -> " + yytext());
+          case 33: 
+            { System.out.println(" Comentario                -> " + yytext().toString());token(" Comentario  -> " + yytext());
             }
           case 92: break;
-          case 35: 
-            { System.out.println(" CASE         -> " + yytext().toString());token(" CASE        -> " + yytext());
+          case 34: 
+            { System.out.println(" ELSE         -> " + yytext().toString());
             }
           case 93: break;
-          case 36: 
-            { System.out.println(" TRUE         -> " + yytext().toString());token(" TRUE        -> " + yytext());
+          case 35: 
+            { System.out.println(" MAIN         -> " + yytext().toString());
             }
           case 94: break;
-          case 37: 
-            { System.out.println(" THIS         -> " + yytext().toString());token(" THIS        -> " + yytext());
+          case 36: 
+            { System.out.println(" CASE         -> " + yytext().toString());
             }
           case 95: break;
-          case 38: 
-            { System.out.println(" VOID         -> " + yytext().toString());token(" VOID        -> " + yytext());
+          case 37: 
+            { System.out.println(" TRUE         -> " + yytext().toString());
             }
           case 96: break;
-          case 39: 
-            { System.out.println(" BREAK        -> " + yytext().toString());token(" BREAK       -> " + yytext());
+          case 38: 
+            { System.out.println(" THIS         -> " + yytext().toString());
             }
           case 97: break;
-          case 40: 
-            { System.out.println(" CLASS        -> " + yytext().toString());token(" CLASS       -> " + yytext());
+          case 39: 
+            { System.out.println(" VOID         -> " + yytext().toString());
             }
           case 98: break;
-          case 41: 
-            { System.out.println(" SUPER        -> " + yytext().toString());token(" SUPER       -> " + yytext());
+          case 40: 
+            { System.out.println(" BREAK        -> " + yytext().toString());
             }
           case 99: break;
-          case 42: 
-            { System.out.println(" TROW         -> " + yytext().toString());token(" TROW        -> " + yytext());
+          case 41: 
+            { System.out.println(" CLASS        -> " + yytext().toString());
             }
           case 100: break;
-          case 43: 
-            { System.out.println(" FALSE        -> " + yytext().toString());token(" FALSE       -> " + yytext());
+          case 42: 
+            { System.out.println(" SUPER        -> " + yytext().toString());
             }
           case 101: break;
-          case 44: 
-            { System.out.println(" WHILE        -> " + yytext().toString());token(" WHILE       -> " + yytext());
+          case 43: 
+            { System.out.println(" TROW         -> " + yytext().toString());
             }
           case 102: break;
-          case 45: 
-            { System.out.println(" STATIC       -> " + yytext().toString());token(" STATIC      -> " + yytext());
+          case 44: 
+            { System.out.println(" FALSE        -> " + yytext().toString());
             }
           case 103: break;
-          case 46: 
-            { System.out.println(" SWITCH       -> " + yytext().toString());token(" SWITCH      -> " + yytext());
+          case 45: 
+            { System.out.println(" WHILE        -> " + yytext().toString());
             }
           case 104: break;
-          case 47: 
-            { System.out.println(" TROWS        -> " + yytext().toString());token(" TROWS       -> " + yytext());
+          case 46: 
+            { System.out.println(" IMPORT       -> " + yytext().toString());
             }
           case 105: break;
-          case 48: 
-            { System.out.println(" RETURN       -> " + yytext().toString());token(" RETURN      -> " + yytext());
+          case 47: 
+            { System.out.println(" STATIC       -> " + yytext().toString());
             }
           case 106: break;
-          case 49: 
-            { System.out.println(" IMPORT       -> " + yytext().toString());token(" IMPORT      -> " + yytext());
+          case 48: 
+            { System.out.println(" SWITCH       -> " + yytext().toString());
             }
           case 107: break;
-          case 50: 
-            { System.out.println(" PUBLIC       -> " + yytext().toString());token(" PUBLIC      -> " + yytext());
+          case 49: 
+            { System.out.println(" TROWS        -> " + yytext().toString());
             }
           case 108: break;
-          case 51: 
-            { System.out.println(" EXTENDS      -> " + yytext().toString());token(" EXTENDS     -> " + yytext());
+          case 50: 
+            { System.out.println(" RETURN       -> " + yytext().toString());
             }
           case 109: break;
-          case 52: 
-            { System.out.println(" BOOLEAN      -> " + yytext().toString());token(" BOOLEAN     -> " + yytext());
+          case 51: 
+            { System.out.println(" PUBLIC       -> " + yytext().toString());
             }
           case 110: break;
-          case 53: 
-            { System.out.println(" DEFAULT      -> " + yytext().toString());token(" DEFAULT     -> " + yytext());
+          case 52: 
+            { System.out.println(" EXTENDS      -> " + yytext().toString());
             }
           case 111: break;
-          case 54: 
-            { System.out.println(" FINALLY      -> " + yytext().toString());token(" FINALLY     -> " + yytext());
+          case 53: 
+            { System.out.println(" BOOLEAN      -> " + yytext().toString());
             }
           case 112: break;
-          case 55: 
-            { System.out.println(" PACKAGE      -> " + yytext().toString());token(" PACKAGE     -> " + yytext());
+          case 54: 
+            { System.out.println(" DEFAULT      -> " + yytext().toString());
             }
           case 113: break;
-          case 56: 
-            { System.out.println(" INTERFACE    -> " + yytext().toString());token(" INTERFACE   -> " + yytext());
+          case 55: 
+            { System.out.println(" FINALLY      -> " + yytext().toString());
             }
           case 114: break;
-          case 57: 
-            { System.out.println(" INSTANCEOF   -> " + yytext().toString());token(" INSTANCEOF  -> " + yytext());
+          case 56: 
+            { System.out.println(" PACKAGE      -> " + yytext().toString());
             }
           case 115: break;
-          case 58: 
-            { System.out.println(" IMPLEMENTS   -> " + yytext().toString());token(" IMPLEMENTS  -> " + yytext());
+          case 57: 
+            { System.out.println(" INTERFACE    -> " + yytext().toString());
             }
           case 116: break;
+          case 58: 
+            { System.out.println(" IMPLEMENTS   -> " + yytext().toString());
+            }
+          case 117: break;
+          case 59: 
+            { System.out.println(" INSTANCEOF   -> " + yytext().toString());
+            }
+          case 118: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }

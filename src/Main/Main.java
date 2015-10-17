@@ -1,23 +1,27 @@
-package lexer;
+package Main;
 
 import java.io.File;
+import lexer.AnalisadorLexo;
 
-public class Main {
+import lexer.Patch;
+import lexer.TokensAll;
 
-    public static void main(String[] args) {
+public class Main {    
+    
+    public static void main(String[] args) throws Exception {
 
         File f = new File("").getAbsoluteFile();
-        
+
         System.out.println(" TABELA DE TOKENS \n");
-        
+
         AnalisadorLexo.main(new String[]{
-            f + "/res/test.java"
+            f + "/src/lexer/Soma.java".trim()
         }
         );
+        
+//        new Patch();       
 
-//        new Patch();
         System.out.println("\nEm caso de alteração no arquivo.java vá para.: ");
         System.out.println("\n" + f.toString().replace("/", "\\") + "\\res\\");
-
     }
 }
