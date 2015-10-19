@@ -6,10 +6,16 @@ import java.io.IOException;
 import java.io.StringReader;
 import lexer.AnalisadorLexo;
 
+/**
+ * Leitura do arquivo que. 
+ * </p> <h2>Lê o arquivo de Entrada.</h2>
+ */
 public class LerArquivo {
 
 	public static void main(String[] args) {
-		
+		/**
+                 * A Class GerarFile, tem um construtor onde recupera o Arquivo de Entrada.txt
+                 */
 		GerarFile gerar = new GerarFile();
 		
 		String nome = gerar.File();
@@ -22,7 +28,7 @@ public class LerArquivo {
                         
                         String linha = lerArq.readLine();
                         while (linha != null) {
-                            conteudo += linha;
+                            conteudo += linha + "\n";
                             System.out.printf("%s\n", linha);
                             
                             linha = lerArq.readLine();

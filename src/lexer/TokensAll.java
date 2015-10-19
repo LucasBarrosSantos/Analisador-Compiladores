@@ -7,6 +7,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * Esta Class não está bem implementada, mas está em uso apenas para 
+ * servir como uma Lista Auxiliar na implementasão dos TokensSingle.
+ */
 public final class TokensAll {
     private int posicao;
     private List<String> tokens = new ArrayList();
