@@ -8,14 +8,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public final class TokensAll {
-
     private int posicao;
     private List<String> tokens = new ArrayList();
     private String token = new String();
     
     // Definição de que as palavras reservadas iniciaram de 300
     // Para que não tenha conflitos com a numeração da Tabela ASC
-    int id = 300;
+    int id = 310;
 
     public List<String> getTokens() {
         return tokens;
@@ -52,30 +51,28 @@ public final class TokensAll {
         int posicaoAtual = posicaoToken(token);
 
         if (getTokens().isEmpty()) {
-            tokens.add(posicaoAtual + " " + token + " " + idTabela + "\n");
+            tokens.add(token);
 
             // Token que vai para a tabela.txt
             // Se for palavra reservada add apenas o identificador 
             // Ex.: token = public, então add no arquivo simbolo 300
-            tokenSimbolo(token + " " + posicaoAtual + "\n");
+            //tokenSimbolo(token + " " + posicaoAtual + "\n");
             token(idTabela + " " + posicaoAtual + "\n");
         }
         if (getTokens().size() > 1 && containsTheToken(token)) {
             for (String s : getTokens()) {
-                if (s.contains(token)) {
-                    n = s.substring(0, Math.min(s.length(), 1));
-                    break;
+                if (s.equals(token)) {
+                   token(idTabela + " " + getPosicao() + "\n");
                 }
             }
-            token(idTabela + " " + n + "\n");
         }
 
         if (canAdd(token + " " + idTabela + "\n")) {
 
-            tokens.add(posicaoAtual + " " + token + " " + idTabela + "\n");
+            tokens.add(token);
 
             // Token que vai para a tabela.txt
-            tokenSimbolo(token + " " + posicaoAtual + "\n");
+            //tokenSimbolo(token + " " + posicaoAtual + "\n");
             token(idTabela + " " + posicaoAtual + "\n");
         }
 
@@ -90,12 +87,20 @@ public final class TokensAll {
     }
 
     public boolean canAdd(String token) {
-        return !(!getTokens().isEmpty() && !getTokens().stream().noneMatch((s) -> (s.contains(token))));
+        for(String s : getTokens()){
+            if(!getTokens().isEmpty()){
+                if(!s.contains(token)){
+                    return true;
+                }
+            }
+        }
+        //return !(!getTokens().isEmpty() && !getTokens().stream().noneMatch((s) -> (s.contains(token))));
+        return false;
     }
 
     public int posicaoToken(String token) {
         for (String s : getTokens()) {
-            if (s.contains(token)) {
+            if (s.equals(token)) {
                 return getPosicao();
             }
         }
@@ -122,41 +127,7 @@ public final class TokensAll {
         this.id = id;
     }
 
-    
-    
-    public static void main(String[] args) throws IOException {
-
-        TokensAll all = new TokensAll();
-        
-        // Teste Palavras Reservadas
-        all.add("main");
-        all.add("public");
-        all.add("void");
-        all.add("main");
-        all.add("int");
-        all.add("int");
-        all.add("String");
-        all.add("=");
-        
-        // Teste ID
-        all.add("soma", 123);
-        all.add("x", 125);
-        all.add("y", 125);
-        all.add("z", 40);
-        all.add("Soma", 41);
-        all.add("cont", 91);
-        all.add("max", 93);
-        all.add("Soma", 41);
-        all.add("y", 125);
-        all.add("z", 40);
-        all.add("x", 125);
-
-        all.getTokens().stream().forEach((t) -> {
-            System.out.println(t + " ");
-        });
-    }
-
-    public static void tokenSimbolo(String yytex) throws IOException {
+    public void tokenSimbolo(String yytex) throws IOException {
         File file = new File("").getAbsoluteFile();
         //"/src/lexer/Arquivo.txt";  
 
@@ -186,7 +157,7 @@ public final class TokensAll {
 
     }
 
-    public static void token(String yytex) throws IOException {
+    public void token(String yytex) throws IOException {
         File file = new File("").getAbsoluteFile();
         //"/src/lexer/Arquivo.txt";  
 

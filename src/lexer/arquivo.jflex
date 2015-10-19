@@ -1,8 +1,10 @@
 package lexer;
+import Lexemas.Token;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+
 
 %%
 
@@ -14,135 +16,104 @@ import java.io.PrintWriter;
 %line
 %column
 
-    // Captura de Tokens
 %{
-  
- public static void token(String yytex) throws IOException {
-        File file = new File("").getAbsoluteFile();
-        //"/src/lexer/Arquivo.txt";  
-
-        File arq = new File(file + "/src/lexer/Tokens.txt");
-
-        //neste ponto criamos o arquivo fisicamente
-        arq.createNewFile();
-
-        //Devemos passar no construtor do FileWriter qual arquivo
-        // vamos manipular.
-        // Esse construtor aceita dois tipos de parâmetros,
-        // File ou String.
-        //O parâmetro true indica que reescrevemos no arquivo
-        // sem apagar o que já existe.
-        // O false apagaria o conteúdo do arquivo e escreveria
-        // o novo conteúdo.
-        // Se não usar o 2° parâmetro, ele por padrão será false.
-        //O mais importante, essa linha abre o fluxo do arquivo 
-
-        FileWriter fileWriter = new FileWriter(arq, true);
-        PrintWriter printWriter = new PrintWriter(fileWriter);
-        printWriter.println(yytex);
-        //o método flush libera a escrita no arquivo
-        printWriter.flush();
-
-        //No final precisamos fechar o arquivo
-        printWriter.close();
-
-    }
+    
+   Token to = new Token();
 
 %}
 
+ // Tokens
+operador_relacional = "<" | ">" | "<=" | ">=" | "==" | "!="  
+op_aditivo = ("+" | "-")
+op_multiplicativo = " * " | " / " | " % " | " && "
 comentario = "/*" ~"*/"
-espaco = [ \n\t\r]
+espaco = [ \n\t\r ]
 letra = [A-Z]|[a-z]
 digito = [0-9]
-sinais = ( "-" | "+" | "*" | "/")
-natural = ({digito} | [1-9]{digito}+)
-inteiro = {natural}
-float = {inteiro}"."{digito}+(("E" | "e"){sinais}?{natural}?)?
+num = ({digito} | [1-9]{digito}+)
+inteiro = {num}
+float = {inteiro}"."{digito}+(("E" | "e"){op_aditivo}?{num}?)?
 id = ({letra} | _ )({letra} | {digito} | _ )*
 
 
 %%
 
  // Palavra_Reservada (Tokens)
- main        {System.out.println(" MAIN         -> " + yytext().toString());}
- boolean     {System.out.println(" BOOLEAN      -> " + yytext().toString());}
- class       {System.out.println(" CLASS        -> " + yytext().toString());}
- do          {System.out.println(" DO           -> " +  yytext().toString());}
- else        {System.out.println(" ELSE         -> " + yytext().toString());}
- extends     {System.out.println(" EXTENDS      -> " + yytext().toString());}
- false       {System.out.println(" FALSE        -> " + yytext().toString());}
- for         {System.out.println(" FOR          -> " + yytext().toString());}
- if          {System.out.println(" IF           -> " + yytext().toString());}
- int         {System.out.println(" INT          -> " + yytext().toString());}
- new         {System.out.println(" NEW          -> " + yytext().toString());}
- public      {System.out.println(" PUBLIC       -> " + yytext().toString());}
- return      {System.out.println(" RETURN       -> " + yytext().toString());}
- static      {System.out.println(" STATIC       -> " + yytext().toString());}
- this        {System.out.println(" THIS         -> " + yytext().toString());}
- true        {System.out.println(" TRUE         -> " + yytext().toString());}
- void        {System.out.println(" VOID         -> " + yytext().toString());}
- while       {System.out.println(" WHILE        -> " + yytext().toString());}
- super       {System.out.println(" SUPER        -> " + yytext().toString());}
- instanceof  {System.out.println(" INSTANCEOF   -> " + yytext().toString());}
- implements  {System.out.println(" IMPLEMENTS   -> " + yytext().toString());}
- interface   {System.out.println(" INTERFACE    -> " + yytext().toString());}
- break       {System.out.println(" BREAK        -> " + yytext().toString());}
- case        {System.out.println(" CASE         -> " + yytext().toString());}
- default     {System.out.println(" DEFAULT      -> " + yytext().toString());}
- switch      {System.out.println(" SWITCH       -> " + yytext().toString());}
- finally     {System.out.println(" FINALLY      -> " + yytext().toString());}
- throw       {System.out.println(" TROW         -> " + yytext().toString());}
- throws      {System.out.println(" TROWS        -> " + yytext().toString());}
- import      {System.out.println(" IMPORT       -> " + yytext().toString());}
- package     {System.out.println(" PACKAGE      -> " + yytext().toString());}
-
+ main        {System.out.println(" MAIN         -> " + yytext());to.addSingle(new Token(yytext()));}
+ boolean     {System.out.println(" BOOLEAN      -> " + yytext());to.addSingle(new Token(yytext()));}
+ class       {System.out.println(" CLASS        -> " + yytext());to.addSingle(new Token(yytext()));}
+ do          {System.out.println(" DO           -> " +  yytext());to.addSingle(new Token(yytext()));}
+ else        {System.out.println(" ELSE         -> " + yytext());to.addSingle(new Token(yytext()));}
+ extends     {System.out.println(" EXTENDS      -> " + yytext());to.addSingle(new Token(yytext()));}
+ false       {System.out.println(" FALSE        -> " + yytext());to.addSingle(new Token(yytext()));}
+ for         {System.out.println(" FOR          -> " + yytext());to.addSingle(new Token(yytext()));}
+ if          {System.out.println(" IF           -> " + yytext());to.addSingle(new Token(yytext()));}
+ int         {System.out.println(" INT          -> " + yytext());to.addSingle(new Token(yytext()));}
+ new         {System.out.println(" NEW          -> " + yytext());to.addSingle(new Token(yytext()));}
+ public      {System.out.println(" PUBLIC       -> " + yytext());to.addSingle(new Token(yytext()));}
+ return      {System.out.println(" RETURN       -> " + yytext());to.addSingle(new Token(yytext()));}
+ static      {System.out.println(" STATIC       -> " + yytext());to.addSingle(new Token(yytext()));}
+ this        {System.out.println(" THIS         -> " + yytext());to.addSingle(new Token(yytext()));}
+ true        {System.out.println(" TRUE         -> " + yytext());to.addSingle(new Token(yytext()));}
+ void        {System.out.println(" VOID         -> " + yytext());to.addSingle(new Token(yytext()));}
+ while       {System.out.println(" WHILE        -> " + yytext());to.addSingle(new Token(yytext()));}
+ super       {System.out.println(" SUPER        -> " + yytext());to.addSingle(new Token(yytext()));}
+ instanceof  {System.out.println(" INSTANCEOF   -> " + yytext());to.addSingle(new Token(yytext()));}
+ implements  {System.out.println(" IMPLEMENTS   -> " + yytext());to.addSingle(new Token(yytext()));}
+ interface   {System.out.println(" INTERFACE    -> " + yytext());to.addSingle(new Token(yytext()));}
+ break       {System.out.println(" BREAK        -> " + yytext());to.addSingle(new Token(yytext()));}
+ case        {System.out.println(" CASE         -> " + yytext());to.addSingle(new Token(yytext()));}
+ default     {System.out.println(" DEFAULT      -> " + yytext());to.addSingle(new Token(yytext()));}
+ switch      {System.out.println(" SWITCH       -> " + yytext());to.addSingle(new Token(yytext()));}
+ finally     {System.out.println(" FINALLY      -> " + yytext());to.addSingle(new Token(yytext()));}
+ throw       {System.out.println(" TROW         -> " + yytext());to.addSingle(new Token(yytext()));}
+ throws      {System.out.println(" TROWS        -> " + yytext());to.addSingle(new Token(yytext()));}
+ import      {System.out.println(" IMPORT       -> " + yytext());to.addSingle(new Token(yytext()));}
+ package     {System.out.println(" PACKAGE      -> " + yytext());to.addSingle(new Token(yytext()));}
+ char        {System.out.println(" CHAR         -> " + yytext());to.addSingle(new Token(yytext()));}
+ continue    {System.out.println(" CONTINUE     -> " + yytext());to.addSingle(new Token(yytext()));}
+ String      {System.out.println(" STRING       -> " + yytext());to.addSingle(new Token(yytext()));}
+ arg         {System.out.println(" ARG       -> " + yytext());to.addSingle(new Token(yytext()));}
+ args        {System.out.println(" ARGS       -> " + yytext());to.addSingle(new Token(yytext()));}
 // Delimitador
 
- "("    {System.out.println(" Abrepar           -> " + yytext().toString());token(" Abrepar     -> " + yytext());}   
- ")"    {System.out.println(" Fechapar          -> " + yytext().toString());token(" Fechapar    -> " + yytext());}
- "{"    {System.out.println(" Abrechave         -> " + yytext().toString());token(" Abrechave   -> " + yytext());}
- "}"    {System.out.println(" Fechachave        -> " + yytext().toString());token(" Fechachave  -> " + yytext());}
- "["    {System.out.println(" Abrecolc          -> " + yytext().toString());token(" Abrecolc    -> " + yytext());}
- "]"    {System.out.println(" Fechacolc         -> " + yytext().toString());token(" Fechacolc   -> " + yytext());}
+ "("    {System.out.println(" Abrepar           -> " + yytext());to.token("40" + "\n");}   
+ ")"    {System.out.println(" Fechapar          -> " + yytext());to.token("41" + "\n");}
+ "{"    {System.out.println(" Abrechave         -> " + yytext());to.token("123" + "\n");}
+ "}"    {System.out.println(" Fechachave        -> " + yytext());to.token("125" + "\n");}
+ "["    {System.out.println(" Abrecolc          -> " + yytext());to.token("91" + "\n");}
+ "]"    {System.out.println(" Fechacolc         -> " + yytext());to.token("93" + "\n");}
 
-// Operadores
+// Operadores Relacionais
 
- "||"   {System.out.println(" Op_ou             -> " + yytext().toString());token(" Op_ou       -> " + yytext());}
- "&&"   {System.out.println(" Op_e              -> " + yytext().toString());token(" Op_e        -> " + yytext());}
- "=="   {System.out.println(" Op_igual_a        -> " + yytext().toString());token(" Op_igual_a  -> " + yytext());}
- "!="   {System.out.println(" Op_diferente_de   -> " + yytext().toString());token(" Op_diferente_de -> " + yytext());}
- "<"    {System.out.println(" Op_menor_que      -> " +yytext().toString());token(" Op_menor_que  -> " + yytext());}
- "<="   {System.out.println(" Op_menor_igual_a  -> " + yytext().toString());token(" Op_menor_igual_a -> " + yytext());}
- ">"    {System.out.println(" Op_maior_que      -> " + yytext().toString());token(" Op_maior_que -> " + yytext());}
- ">="   {System.out.println(" Op_maior_igual_a  -> " + yytext().toString());token(" Op_maior_igual_a -> " + yytext());}
- "+"    {System.out.println(" Op_adção          -> " + yytext().toString());token(" Op_adção -> " + yytext());}
- "-"    {System.out.println(" Op_subtração      -> " + yytext().toString());token(" Op_subtração  -> " + yytext());}
- "*"    {System.out.println(" Op_multiplicação  -> " + yytext().toString());token(" Op_multiplicação -> " + yytext());}
- "/"    {System.out.println(" Op_divisão        -> " + yytext().toString());token(" Op_divisão    -> " + yytext());}
- "%"    {System.out.println(" Op_mod            -> " + yytext().toString());token(" Op_mod        -> " + yytext());}
- "!"    {System.out.println(" Op_diferente_de   -> " + yytext().toString());token(" Op_diferente_de -> " + yytext());}
+{operador_relacional} 
+{System.out.println(" Op_relacional   -> " + yytext());to.token("280" + "\n");}
 
 // Outros
 
- ";"    {System.out.println(" Term_ponto_e_virgula -> " + yytext().toString());token(" Term_ponto_e_virgula -> " + yytext());}
- "."    {System.out.println(" Ponto             -> " + yytext().toString());token(" Ponto       -> " + yytext());}
- "="    {System.out.println(" Atrib_            -> " + yytext().toString());token(" Atrib_      -> " + yytext());}
- "+="   {System.out.println(" Atrib_            -> " + yytext().toString());token(" Atrib_      -> " + yytext());}
- "-="   {System.out.println(" Atrib_            -> " + yytext().toString());token(" Atrib_      -> " + yytext());}
- "*="   {System.out.println(" Atrib_            -> " + yytext().toString());token(" Atrib_      -> " + yytext());}
- "/="   {System.out.println(" Atrib_            -> " + yytext().toString());token(" Atrib_      -> " + yytext());}
+{op_multiplicativo}   
+{System.out.println(" Op_multiplicativo   -> " + yytext());to.token("281" + "\n");}
+
+{op_aditivo}
+{System.out.println(" op_aditivo          -> " + yytext());to.token("282" + "\n");}
+
+ ";"    {System.out.println(" Term_ponto_e_virgula -> " + yytext());to.token("59" + "\n");}
+ "."    {System.out.println(" Ponto             -> " + yytext());to.token("46" + "\n");}
+ ":"    {System.out.println(" Dois Ponto        -> " + yytext());to.token("58" + "\n");}
+ ","    {System.out.println(" VÍRGULA           -> " + yytext());to.token("44" + "\n");}
+ "="    {System.out.println(" Atrib_            -> " + yytext());to.token("61" + "\n");}
 
 {espaco}
 {/* Fazer Nada */}
 
 {comentario}
-{System.out.println(" Comentario                -> " + yytext().toString());token(" Comentario  -> " + yytext());}
+{System.out.println(" Comentario                -> " + yytext());}
 
-{inteiro}
-{System.out.println(" inteiro                   -> " + yytext().toString());token(" inteiro     -> " + yytext());}
+{num}
+{System.out.println(" inteiro                   -> " + yytext());to.token("290" + " " + yytext() + "\n");}
 
 {float}
-{System.out.println(" Float                     -> " + yytext().toString());token(" Float       -> " + yytext());}
+{System.out.println(" Float                     -> " + yytext());}
 
 {id}
-{System.out.println(" id                        -> " + yytext().toString());token(" id          -> " + yytext());}
+{System.out.println(" id                        -> " + yytext());to.add(new Token(yytext(), 300));}
