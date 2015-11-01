@@ -2,10 +2,7 @@
 
 package lexer;
 import Lexemas.Token;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+
 
 
 
@@ -835,7 +832,7 @@ public final class AnalisadorLexo {
             }
           case 76: break;
           case 21: 
-            { System.out.println(" Float                     -> " + yytext());
+            { System.out.println(" Float                     -> " + yytext());to.token("292" + " " + yytext() + "\n");
             }
           case 77: break;
           case 22: 

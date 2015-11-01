@@ -21,7 +21,7 @@ import lexer.TokensAll;
  * <p> codASC = 310
  * <p> posicao = null. Não tem posição, apenas a referencia na Tabela de Tokens.
  */
-public class Token {
+public class Token_bak {
     
     public int count = 310;
     /**
@@ -44,7 +44,7 @@ public class Token {
     /**
      * Lista de Tokens
      */
-    List<Token> tokens;
+    List<Token_bak> tokens;
     
     /**
      * Lista auxuliar para armazenar os tokensSingle
@@ -54,7 +54,7 @@ public class Token {
     /**
      * Construtor. Inicializando a Lista de Tokens
      */
-    public Token() {
+    public Token_bak() {
         tokens = new ArrayList<>();
     }
     
@@ -62,7 +62,7 @@ public class Token {
      * Construtor Token
      * @param token 
      */
-    public Token(String token) {
+    public Token_bak(String token) {
         this.nome = token;
     }
 
@@ -71,7 +71,7 @@ public class Token {
      * @param token
      * @param codASC 
      */
-    public Token(String token, int codASC) {
+    public Token_bak(String token, int codASC) {
         this.nome = token;
         this.codASC = codASC;
     }
@@ -82,7 +82,7 @@ public class Token {
      * @param codASC
      * @param posicao 
      */
-    public Token(String token, int codASC, int posicao) {
+    public Token_bak(String token, int codASC, int posicao) {
         this.nome = token;
         this.codASC = codASC;
         this.posicao = posicao;
@@ -92,7 +92,7 @@ public class Token {
      * Construtor Token
      * @param token 
      */
-    public Token(Token token) {
+    public Token_bak(Token_bak token) {
         tokens.add(token);
     }
     
@@ -149,7 +149,7 @@ public class Token {
      * 
      * @return Lista de Tokens
      */
-    public List<Token> getTokens() {
+    public List<Token_bak> getTokens() {
         return tokens;
     }
     
@@ -157,7 +157,7 @@ public class Token {
      * Altera uma lista de Tokens
      * @param tokens 
      */
-    public void setTokens(List<Token> tokens) {
+    public void setTokens(List<Token_bak> tokens) {
         this.tokens = tokens;
     }
     
@@ -168,16 +168,40 @@ public class Token {
      * @param token
      * @throws IOException 
      */
-    public void addSingle(Token token) throws IOException {
+    public void addSingle(Token_bak token) throws IOException {
         // Adicionar os TokensSingle na Lista, mas sem mandar para as tabelas
         
         // achou está sendo usanda para se o token estiver na lista então incrementa o count.
-        ValueToken vt = new ValueToken();
-        token.setCodASC(vt.Token(token)); // Capitura o valor do Token pela descrição!
+        boolean achou = false;
+        token.codASC = count;
         // Sempre adicionará o Token na lista
         tokens.add(token);
         
-        tokensAll.token("" + token.getCodASC() + "\n");        
+        for (Token_bak t : tokens) {
+            if (t.getNome().equals(token.getNome())) {
+                token.codASC = t.getCodASC();
+                if (t.getCodASC() >= count) {
+                    count = t.getCodASC();
+                    ValueToken vt = new ValueToken();
+                    achou = true;
+                }
+                if(t.getCodASC() == token.getCodASC()){
+                    count = t.getCodASC();
+                    achou = true;
+                }
+            }
+        }
+        tokensAll.token("" + count + "\n");
+        // O proximo token vai ter sempre o codAsc maior que os já adicionados.
+        tokens.stream().filter((t) -> (t.getCodASC() > count)).forEach((t) -> {
+            count = t.getCodASC();
+        });
+        // Incremento do count se o token estiver na lista.
+        if (achou) {
+            count += 10;
+        }
+
+        
     }
     
     /**
@@ -185,12 +209,12 @@ public class Token {
      * @param token
      * @throws IOException 
      */
-    public void add(Token token) throws IOException {
+    public void add(Token_bak token) throws IOException {
         
         // O primeiro token sempre será adicionado na Lista.
         if (tokens.isEmpty()) {
             if (token.getPosicao() == 0) {
-                token.setPosicao(getPosicao() + 1);
+                token.posicao = getPosicao() + 1;
                 tokenSimbolo(token.getNome() + " " + token.getPosicao() + "\n");
                 token("" + token.getCodASC() + " " + token.getPosicao() + "\n");
             }
@@ -198,10 +222,10 @@ public class Token {
             tokens.add(token);
 
         } else {
-            for (Token t : tokens) {
+            for (Token_bak t : tokens) {
                 if (!contenToken(token)) {
                     if (token.getPosicao() == 0) {
-                        token.setPosicao(posicaoTokenEncontrado);
+                        token.posicao = posicaoTokenEncontrado;
                     }
                     tokenSimbolo(token.getNome() + " " + token.getPosicao() + "\n");
                     token("" + token.getCodASC() + " " + token.getPosicao() + "\n");
@@ -218,10 +242,10 @@ public class Token {
      * @return
      * @throws IOException 
      */
-    public boolean contenToken(Token token) throws IOException {
-        for (Token t : tokens) {
+    public boolean contenToken(Token_bak token) throws IOException {
+        for (Token_bak t : tokens) {
             if (t.getNome().equals(token.getNome()) && t.getCodASC() == token.getCodASC()) {
-                token.setPosicao(t.getPosicao());
+                token.posicao = t.getPosicao();
                 tokens.add(t);
                 token("" + token.getCodASC() + " " + token.getPosicao() + "\n");
                 return true;
@@ -261,7 +285,7 @@ public class Token {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Token other = (Token) obj;
+        final Token_bak other = (Token_bak) obj;
         if (this.count != other.count) {
             return false;
         }

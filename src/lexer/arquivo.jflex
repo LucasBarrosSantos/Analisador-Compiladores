@@ -1,9 +1,6 @@
 package lexer;
 import Lexemas.Token;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+
 
 
 %%
@@ -113,7 +110,7 @@ id = ({letra} | _ )({letra} | {digito} | _ )*
 {System.out.println(" inteiro                   -> " + yytext());to.token("290" + " " + yytext() + "\n");}
 
 {float}
-{System.out.println(" Float                     -> " + yytext());}
+{System.out.println(" Float                     -> " + yytext());to.token("292" + " " + yytext() + "\n");}
 
 {id}
 {System.out.println(" id                        -> " + yytext());to.add(new Token(yytext(), 300));}
