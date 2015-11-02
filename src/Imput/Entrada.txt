@@ -1,6 +1,6 @@
 public class Soma {
 
-    public static void main(String arg[]) {
+    public static void main(String arg) {
         int a, b, c;
         b = 10;
         c = 3;

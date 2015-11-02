@@ -12,14 +12,18 @@ public enum ValueEnum {
     NUM(290), FLOAT(292), ID(300), ABRE_PAR(40), FECHA_PAR(41), ABRE_CHAVE(123),
     FECHA_CHAVE(125), ABRE_COLCHETE(91), FECHA_COLCHETE(93), OP_RELACIONAL(280),
     OP_MULTIPLICATIVO(281), OP_ADITIVO(282), PONTO_E_VIRGULA(59), PONTO(46),
-    DOIS_PONTOS(58), VIRGULA(44), ATRIB_(61);
+    DOIS_PONTOS(58), VIRGULA(44), ATRIB_(61), OP_LOGICO(283);
     
     private final int value;
     
     private ValueEnum(int value) {
         this.value = value;
     }
-
+    
+    /**
+     * 
+     * @return Valor do Tokens
+     */
     public int getValue() {
         return value;
     }

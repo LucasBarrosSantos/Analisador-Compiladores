@@ -22,7 +22,8 @@ import Lexemas.Token;
  // Tokens
 operador_relacional = "<" | ">" | "<=" | ">=" | "==" | "!="  
 op_aditivo = ("+" | "-")
-op_multiplicativo = " * " | " / " | " % " | " && "
+op_logic = ("||" | "&&")
+op_multiplicativo = (" * " | " / " | " % " | " && ")
 comentario = "/*" ~"*/"
 espaco = [ \n\t\r ]
 letra = [A-Z]|[a-z]
@@ -87,6 +88,9 @@ id = ({letra} | _ )({letra} | {digito} | _ )*
 {System.out.println(" Op_relacional   -> " + yytext());to.token("280" + "\n");}
 
 // Outros
+
+{op_logic}
+{System.out.println(" Op_logico           -> " + yytext());to.token("283" + "\n");}
 
 {op_multiplicativo}   
 {System.out.println(" Op_multiplicativo   -> " + yytext());to.token("281" + "\n");}
