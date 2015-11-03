@@ -36,18 +36,18 @@ public class AnalisadorGramaticalJAVA {
         index++;
         if (lookahead == token) {
             lookahead = proximo_token();
-            
-             if (token == ValueEnum.ID.getValue()) {
-             lookahead = proximo_token();
-             }
 
-             if (token == ValueEnum.NUM.getValue()) {
-             lookahead = proximo_token();
-             }
+            if (token == ValueEnum.ID.getValue()) {
+                lookahead = proximo_token();
+            }
 
-             if (token == ValueEnum.OP_ADITIVO.getValue()) {
-             lookahead = proximo_token();
-             }
+            if (token == ValueEnum.NUM.getValue()) {
+                lookahead = proximo_token();
+            }
+
+            if (token == ValueEnum.OP_ADITIVO.getValue()) {
+                lookahead = proximo_token();
+            }
         } else {
             error(token);
         }
@@ -266,7 +266,7 @@ public class AnalisadorGramaticalJAVA {
         indice--;
     }
 
-    private void methodName_L2() throws IOException {
+    private void methodName_L2() throws IOException, Exception {
         indice++;
         arvore(indice, "methodName_L2");
         if (lookahead == ValueEnum.VOID.getValue()) {
@@ -433,7 +433,7 @@ public class AnalisadorGramaticalJAVA {
         indice--;
     }
 
-    private void methodBody() throws IOException {
+    private void methodBody() throws IOException, Exception {
         indice++;
         arvore(indice, "methodBody");
         declarationList();
@@ -447,7 +447,7 @@ public class AnalisadorGramaticalJAVA {
         if (lookahead == ValueEnum.BOOLEAN.getValue() || lookahead == ValueEnum.CHAR.getValue()
                 || lookahead == ValueEnum.FLOAT.getValue() || lookahead == ValueEnum.INT.getValue()
                 || lookahead == ValueEnum.STRING.getValue() || lookahead == ValueEnum.VOID.getValue()) {
-            
+
             declaration();
             Reconhecer(ValueEnum.PONTO_E_VIRGULA.getValue());
             arvore(indice + 1, ";");
@@ -459,7 +459,7 @@ public class AnalisadorGramaticalJAVA {
         indice--;
     }
 
-    private void statementList() throws IOException {
+    private void statementList() throws IOException, Exception {
         indice++;
         arvore(indice++, "statementList");
         if (lookahead == ValueEnum.ID.getValue() || lookahead == ValueEnum.IF.getValue() || lookahead == ValueEnum.WHILE.getValue()
@@ -472,7 +472,7 @@ public class AnalisadorGramaticalJAVA {
         indice--;
     }
 
-    private void statement() throws IOException {
+    private void statement() throws IOException, Exception {
         indice++;
         arvore(indice++, "statementList");
         if (lookahead == ValueEnum.ID.getValue()) {
@@ -490,9 +490,9 @@ public class AnalisadorGramaticalJAVA {
         if (lookahead == ValueEnum.RETURN.getValue()) {
             Reconhecer(ValueEnum.RETURN.getValue());
             arvore(indice++, "return");
-            
+
             expression();
-            
+
             Reconhecer(ValueEnum.PONTO_E_VIRGULA.getValue());
             arvore(indice++, ";");
         }
@@ -503,21 +503,21 @@ public class AnalisadorGramaticalJAVA {
         indice--;
     }
 
-    private void statementList_L1() throws IOException {
+    private void statementList_L1() throws IOException, Exception {
         indice++;
         arvore(indice++, "statementList_L1");
-        
-        if(lookahead == ValueEnum.ID.getValue() || lookahead == ValueEnum.IF.getValue() || lookahead == ValueEnum.WHILE.getValue()
-                || lookahead == ValueEnum.RETURN.getValue() || lookahead == ValueEnum.BREAK.getValue()){
+
+        if (lookahead == ValueEnum.ID.getValue() || lookahead == ValueEnum.IF.getValue() || lookahead == ValueEnum.WHILE.getValue()
+                || lookahead == ValueEnum.RETURN.getValue() || lookahead == ValueEnum.BREAK.getValue()) {
             statement();
             statementList_L1();
-        }else{
+        } else {
             System.out.println(" *** VAZIO *** \n");
         }
         indice--;
     } // ok
 
-    private void expressionList() throws IOException {
+    private void expressionList() throws IOException, Exception {
         indice++;
         arvore(indice++, "expressionList");
 
@@ -531,14 +531,15 @@ public class AnalisadorGramaticalJAVA {
         indice--;
     }
 
-    private void expression() throws IOException {
+    private void expression() throws IOException, Exception {
         indice++;
         arvore(indice++, "expression");
         if (lookahead == ValueEnum.ID.getValue() || lookahead == ValueEnum.NUM.getValue() || lookahead == ValueEnum.CHAR.getValue()
                 || lookahead == ValueEnum.TRUE.getValue() || lookahead == ValueEnum.FALSE.getValue()) {
             literal();
             expression_L1();
-        }  if (lookahead == ValueEnum.ABRE_PAR.getValue()) {
+        }
+        if (lookahead == ValueEnum.ABRE_PAR.getValue()) {
             Reconhecer(ValueEnum.ABRE_PAR.getValue());
             arvore(indice++, "(");
 
@@ -546,20 +547,34 @@ public class AnalisadorGramaticalJAVA {
 
             Reconhecer(ValueEnum.FECHA_PAR.getValue());
             arvore(indice++, ")");
-        }  if (lookahead == ValueEnum.OP_ADITIVO.getValue()) {
+        }
+        if (lookahead == ValueEnum.OP_ADITIVO.getValue()) {
             Reconhecer(ValueEnum.OP_ADITIVO.getValue());
             arvore(indice++, "+/-");
 
             expression();
-        } else {
+        }if(lookahead == ValueEnum.VIRGULA.getValue()){
+            expressionList_L1();
+            expression_L1();
+        } if(lookahead == ValueEnum.FECHA_CHAVE.getValue()){
+            Reconhecer(ValueEnum.FECHA_CHAVE.getValue());
+            arvore(indice++, "}");
+            methodName();
+        }if(lookahead == ValueEnum.FECHA_PAR.getValue()){
+            Reconhecer(ValueEnum.FECHA_PAR.getValue());
+            arvore(indice++, ")");
+            
+            Reconhecer(ValueEnum.PONTO_E_VIRGULA.getValue());
+            arvore(indice++, ";");
+        }
+        else {
             expression_L1();
         }
         indice--;
     }
 
-    private void expressionList_L1() throws IOException {
+    private void expressionList_L1() throws IOException, Exception {
         indice++;
-        Reconhecer(ValueEnum.VIRGULA.getValue());
         arvore(indice++, "expressionList_L1");
         if (lookahead == ValueEnum.VIRGULA.getValue()) {
             Reconhecer(ValueEnum.VIRGULA.getValue());
@@ -573,7 +588,7 @@ public class AnalisadorGramaticalJAVA {
         }
     }
 
-    private void ifStatement() throws IOException {
+    private void ifStatement() throws IOException, Exception {
         indice++;
         arvore(indice++, "ifStatement");
 
@@ -617,7 +632,7 @@ public class AnalisadorGramaticalJAVA {
         }
     }
 
-    private void expression_L1() throws IOException {
+    private void expression_L1() throws IOException, Exception {
         indice++;
         arvore(indice++, "expression_L1");
         if (lookahead == ValueEnum.OP_ADITIVO.getValue() || lookahead == ValueEnum.OP_MULTIPLICATIVO.getValue()
@@ -654,7 +669,7 @@ public class AnalisadorGramaticalJAVA {
         indice--;
     }
 
-    private void statementBlock() throws IOException {
+    private void statementBlock() throws IOException, Exception {
         indice++;
         arvore(indice++, "statementBlock");
         if (lookahead == ValueEnum.ID.getValue() || lookahead == ValueEnum.IF.getValue() || lookahead == ValueEnum.WHILE.getValue()
@@ -672,15 +687,15 @@ public class AnalisadorGramaticalJAVA {
         indice--;
     }
 
-    private void elseAlternative() throws IOException {
+    private void elseAlternative() throws IOException, Exception {
         indice++;
         arvore(indice++, "elseAlternative");
         Reconhecer(ValueEnum.ELSE.getValue());
         arvore(indice++, "else");
         statementBlock();
     }
-    
-    private void whileStatement() throws IOException {
+
+    private void whileStatement() throws IOException, Exception {
         indice++;
         arvore(indice++, "whileStatement");
         Reconhecer(ValueEnum.WHILE.getValue());
@@ -697,10 +712,10 @@ public class AnalisadorGramaticalJAVA {
         indice--;
     }
 
-    private void statement_L1() throws IOException {
+    private void statement_L1() throws IOException, Exception {
         indice++;
         arvore(indice++, "statement_L1");
-        
+
         if (lookahead == ValueEnum.ATRIB_.getValue()) {
             Reconhecer(ValueEnum.ATRIB_.getValue());
             arvore(indice++, "op_atributo = ");
@@ -725,7 +740,7 @@ public class AnalisadorGramaticalJAVA {
         indice--;
     } // ok
 
-    private void statement_L2() throws IOException {
+    private void statement_L2() throws IOException, Exception {
         indice++;
         arvore(indice++, "statement_L2");
         if (lookahead == ValueEnum.PONTO_E_VIRGULA.getValue()) {
