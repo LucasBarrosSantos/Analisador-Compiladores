@@ -82,11 +82,11 @@ public class AnalisadorGramaticalJAVA {
         erros.add("" + token);
 
         switch (erros.get(0)) {
-            
+
             case "300":
                 System.out.println("Error Token: " + token + ": Esperava-se um 'ID'" + " linha " + "xx");
                 break;
-            
+
             case "41":
                 System.out.println("Error Token: " + token + ": Esperava-se um ')'" + " linha " + "xx");
                 break;
@@ -117,6 +117,30 @@ public class AnalisadorGramaticalJAVA {
 
             case "640":
                 System.out.println("Error Token: " + token + ": Esperava-se um 'arg'" + " linha " + "xx");
+                break;
+
+            case "630":
+                System.out.println("Error Token: " + token + ": Esperava-se um 'String'" + " linha " + "xx");
+                break;
+
+            case "91":
+                System.out.println("Error Token: " + token + ": Esperava-se um '['" + " linha " + "xx");
+                break;
+
+            case "93":
+                System.out.println("Error Token: " + token + ": Esperava-se um ']'" + " linha " + "xx");
+                break;
+
+            case "40":
+                System.out.println("Error Token: " + token + ": Esperava-se um '('" + " linha " + "xx");
+                break;
+
+            case "420":
+                System.out.println("Error Token: " + token + ": Esperava-se um 'public'" + " linha " + "xx");
+                break;
+
+            case "530":
+                System.out.println("Error Token: " + token + ": Esperava-se um 'case'" + " linha " + "xx");
                 break;
         }
     } // Terminar...
