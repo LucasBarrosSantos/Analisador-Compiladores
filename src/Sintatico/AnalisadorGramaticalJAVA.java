@@ -1,6 +1,5 @@
 package Sintatico;
 
-import Lexemas.Token;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -58,18 +57,18 @@ public class AnalisadorGramaticalJAVA {
      * @throws IOException
      */
     public void classDeclaration() throws IOException, Exception {
-        arvore(indice, "classDeclaration");
+        printArvore(indice, "classDeclaration");
         index++; // aponta para o primeito Token da lista
         lookahead = proximo_token();
         if (lookahead == ValueEnum.PUBLIC.getValue()) {
             Reconhecer(ValueEnum.PUBLIC.getValue());
-            arvore(indice + 1, "public");
+            printArvore(indice+1, "public");
 
             Reconhecer(ValueEnum.CLASS.getValue());
-            arvore(indice + 1, "class");
+            printArvore(indice+1, "class");
 
             Reconhecer(ValueEnum.ID.getValue());
-            arvore(indice + 1, "id");
+            printArvore(indice+1, "id");
 
             classBody();
         } else {
@@ -102,7 +101,7 @@ public class AnalisadorGramaticalJAVA {
                 System.out.println("Error Token: " + token + ": Esperava-se um ';'" + " linha " + "xx");
                 break;
         }
-    }
+    } // Terminar...
 
     public int proximo_token() throws IOException {
 
@@ -135,7 +134,7 @@ public class AnalisadorGramaticalJAVA {
         /*
          * index -1, pois no incremento o index == 1, mas a primeira posição é 0!
          */
-    }
+    } // ok 
 
     public Integer getLookahead() {
         return lookahead;
@@ -153,42 +152,42 @@ public class AnalisadorGramaticalJAVA {
         this.listITokens = listITokens;
     }
 
-    private void arvore(int indice, String s) {
+    private void printArvore(int indice, String s) {
         for (int i = 0; i <= indice; i++) {
             System.out.print("  ");
         }
         System.out.print(" |__" + s + "\n");
-    }
+    } // ok 
 
     private void classBody() throws IOException, Exception {
         indice++;
-        arvore(indice, "classBody");
+        printArvore(indice, "classBody");
         if (lookahead == ValueEnum.ABRE_CHAVE.getValue()) {
             Reconhecer(ValueEnum.ABRE_CHAVE.getValue());
-            arvore(indice + 1, "{");
+            printArvore(indice + 1, "Abre Chave => '{'");
 
             classBodyDeclaration();
 
             Reconhecer(ValueEnum.FECHA_CHAVE.getValue());
-            arvore(indice - 1, "}");
+            printArvore(indice - 1, "Fecha Chave => '}'");
         } else {
             error(ValueEnum.ABRE_CHAVE.getValue());
         }
         indice--;
-    }
+    } // ok
 
     private void classBodyDeclaration() throws IOException, Exception {
         indice++;
-        arvore(indice + 1, "classBodyDeclaration");
+        printArvore(indice + 1, "classBodyDeclaration");
 
         declarationList();
         methodDeclaration();
         indice--;
-    }
+    } // ok
 
     private void declarationList() throws IOException {
         indice++;
-        arvore(indice, "declarationList");
+        printArvore(indice, "declarationList");
 
         if (lookahead == ValueEnum.BOOLEAN.getValue() || lookahead == ValueEnum.CHAR.getValue()
                 || lookahead == ValueEnum.FLOAT.getValue() || lookahead == ValueEnum.INT.getValue()
@@ -196,253 +195,18 @@ public class AnalisadorGramaticalJAVA {
 
             declaration();
             Reconhecer(ValueEnum.PONTO_E_VIRGULA.getValue());
-            arvore(indice + 1, ";");
+            printArvore(indice + 1, "Ponto e Vírgula => ';'");
 
             declarationList_L1();
         } else {
             declarationList_L1();
         }
         indice--;
-    }
-
-    private void methodDeclaration() throws IOException, Exception {
+    } // ok
+    
+     private void declarationList_L1() throws IOException {
         indice++;
-        arvore(indice, "methodDeclaration");
-        if (lookahead == ValueEnum.PUBLIC.getValue()) {
-            arvore(indice++, "public");
-            methodName();
-            methodDeclaration_L1();
-        } else {
-            error(ValueEnum.PUBLIC.getValue());
-        }
-        indice--;
-    }
-
-    private void declaration() throws IOException {
-        indice++;
-        arvore(indice, "declaration");
-        type();
-        identifierList();
-        indice--;
-    }
-
-    public void methodName() throws Exception {
-        indice++;
-        arvore(indice, "methodName");
-        Reconhecer(ValueEnum.PUBLIC.getValue());
-        arvore(indice++, "public");
-        methodName_L1();
-        indice--;
-    }
-
-    private void methodName_L1() throws IOException, Exception {
-        indice++;
-        arvore(indice, "methodName_L1");
-        if (lookahead == ValueEnum.STATIC.getValue()) {
-            Reconhecer(ValueEnum.STATIC.getValue());
-            arvore(indice + 1, "static");
-
-            methodName_L2();
-        } else {
-            Reconhecer(ValueEnum.ID.getValue());
-            arvore(indice + 1, "ID");
-
-            Reconhecer(ValueEnum.ABRE_PAR.getValue());
-            arvore(indice + 1, "(");
-
-            formalParameters();
-
-            Reconhecer(ValueEnum.FECHA_PAR.getValue());
-            arvore(indice - 1, ")");
-
-            Reconhecer(ValueEnum.ABRE_CHAVE.getValue());
-            arvore(indice + 1, "{");
-
-            methodBody();
-
-            Reconhecer(ValueEnum.FECHA_CHAVE.getValue());
-            arvore(indice++, "}");
-        }
-        indice--;
-    }
-
-    private void methodName_L2() throws IOException, Exception {
-        indice++;
-        arvore(indice, "methodName_L2");
-        if (lookahead == ValueEnum.VOID.getValue()) {
-            Reconhecer(ValueEnum.VOID.getValue());
-            arvore(indice + 1, "void");
-
-            Reconhecer(ValueEnum.MAIN.getValue());
-            arvore(indice + 1, "main");
-
-            Reconhecer(ValueEnum.ABRE_PAR.getValue());
-            arvore(indice + 1, "(");
-
-            Reconhecer(ValueEnum.STRING.getValue());
-            arvore(indice + 1, "String");
-
-            Reconhecer(ValueEnum.ARG.getValue());
-            arvore(indice + 1, "arg");
-
-            Reconhecer(ValueEnum.FECHA_PAR.getValue());
-            arvore(indice + 1, ")");
-
-            Reconhecer(ValueEnum.ABRE_CHAVE.getValue());
-            arvore(indice + 1, "{");
-
-            methodBody();
-
-            Reconhecer(ValueEnum.FECHA_PAR.getValue());
-            arvore(indice - 1, ")");
-        } else {
-            type();
-            Reconhecer(ValueEnum.ID.getValue());
-            arvore(indice + 1, "ID");
-
-            Reconhecer(ValueEnum.ABRE_PAR.getValue());
-            arvore(indice + 1, "(");
-
-            formalParameters();
-
-            Reconhecer(ValueEnum.FECHA_PAR.getValue());
-            arvore(indice + 1, ")");
-
-            Reconhecer(ValueEnum.ABRE_CHAVE.getValue());
-            arvore(indice + 1, "{");
-
-            methodBody();
-
-            Reconhecer(ValueEnum.FECHA_CHAVE.getValue());
-            arvore(indice - 1, "}");
-        }
-        indice--;
-    }
-
-    public void type() throws IOException {
-        indice++;
-        arvore(indice, "type");
-        switch (lookahead) {
-            case 320: // boolean
-                Reconhecer(ValueEnum.BOOLEAN.getValue());
-                arvore(indice++, "boolean");
-                break;
-            case 610: // char
-                Reconhecer(ValueEnum.CHAR.getValue());
-                arvore(indice++, "char");
-                break;
-            case 292: // float
-                Reconhecer(ValueEnum.FLOAT.getValue());
-                arvore(indice++, "float");
-                break;
-            case 400: // int
-                Reconhecer(ValueEnum.INT.getValue());
-                arvore(indice++, "int");
-                break;
-            case 630: // string
-                Reconhecer(ValueEnum.STRING.getValue());
-                arvore(indice++, "String");
-                break;
-            case 470: // void
-                Reconhecer(ValueEnum.VOID.getValue());
-                arvore(indice++, "void");
-                break;
-            default:
-                System.out.println(" *** VAZIO *** \n");
-
-        }
-        indice--;
-    }
-
-    private void identifierList() throws IOException {
-        indice++;
-        arvore(indice, "identifierList");
-        if (lookahead == ValueEnum.ID.getValue()) {
-            Reconhecer(ValueEnum.ID.getValue());
-            arvore(indice + 1, "ID");
-
-            identifierList_L1();
-        } else {
-            error(ValueEnum.ID.getValue());
-        }
-        indice--;
-    }
-
-    private void identifierList_L1() throws IOException {
-        indice++;
-        arvore(indice, "identifierList_L1");
-        if (lookahead == ValueEnum.VIRGULA.getValue()) {
-            Reconhecer(ValueEnum.VIRGULA.getValue());
-            arvore(indice + 1, "virgula");
-
-            Reconhecer(ValueEnum.ID.getValue());
-            arvore(indice + 1, "ID");
-            identifierList_L1();
-        } else {
-            System.out.println(" *** VAZIO *** \n");
-        }
-    }
-
-    private void methodDeclaration_L1() throws Exception {
-        indice++;
-        arvore(indice, "identifierList_L1");
-
-        if (lookahead == ValueEnum.PUBLIC.getValue()) {
-            methodName();
-            methodDeclaration_L1();
-        } else {
-            System.out.println(" *** VAZIO *** \n");
-        }
-        indice--;
-    }
-
-    private void formalParameters() throws IOException {
-        indice++;
-        arvore(indice, "formalParameters");
-        if (lookahead == ValueEnum.BOOLEAN.getValue() || lookahead == ValueEnum.CHAR.getValue()
-                || lookahead == ValueEnum.FLOAT.getValue() || lookahead == ValueEnum.INT.getValue()
-                || lookahead == ValueEnum.STRING.getValue() || lookahead == ValueEnum.VOID.getValue()) {
-            formalParameter();
-            formalParameters_L1();
-        } else {
-            formalParameters_L1();
-        }
-        indice--;
-    }
-
-    private void formalParameters_L1() throws IOException {
-        indice++;
-        arvore(indice, "formalParameters_L1");
-        if (lookahead == ValueEnum.VIRGULA.getValue()) {
-            Reconhecer(ValueEnum.VIRGULA.getValue());
-            arvore(indice + 1, "virgula");
-
-            formalParameter();
-            formalParameters_L1();
-        } else {
-            System.out.println(" *** VAZIO *** \n");
-        }
-    }
-
-    private void formalParameter() throws IOException {
-        indice++;
-        arvore(indice, "formalParameter");
-        type();
-        Reconhecer(ValueEnum.ID.getValue());
-        arvore(indice + 1, "ID");
-        indice--;
-    }
-
-    private void methodBody() throws IOException, Exception {
-        indice++;
-        arvore(indice, "methodBody");
-        declarationList();
-        statementList();
-    }
-
-    private void declarationList_L1() throws IOException {
-        indice++;
-        arvore(indice, "declarationList_L1");
+        printArvore(indice, "declarationList_L1");
 
         if (lookahead == ValueEnum.BOOLEAN.getValue() || lookahead == ValueEnum.CHAR.getValue()
                 || lookahead == ValueEnum.FLOAT.getValue() || lookahead == ValueEnum.INT.getValue()
@@ -450,18 +214,253 @@ public class AnalisadorGramaticalJAVA {
 
             declaration();
             Reconhecer(ValueEnum.PONTO_E_VIRGULA.getValue());
-            arvore(indice + 1, ";");
+            printArvore(indice + 1, "Ponto e Vírgula => ';'");
 
             declarationList_L1();
         } else {
             System.out.println(" *** VAZIO ***\n");
         }
         indice--;
+    } // ok
+
+    private void methodDeclaration() throws IOException, Exception {
+        indice++;
+        printArvore(indice, "methodDeclaration");
+        if (lookahead == ValueEnum.PUBLIC.getValue()) {
+            printArvore(indice++, "public");
+            methodName();
+            methodDeclaration_L1();
+        } else {
+            error(ValueEnum.PUBLIC.getValue());
+        }
+        indice--;
+    } // ok
+
+    private void declaration() throws IOException {
+        indice++;
+        printArvore(indice, "declaration");
+        type();
+        identifierList();
+        indice--;
+    } // ok
+    
+    private void methodDeclaration_L1() throws Exception {
+        indice++;
+        printArvore(indice, "identifierList_L1");
+
+        if (lookahead == ValueEnum.PUBLIC.getValue()) {
+            methodName();
+            methodDeclaration_L1();
+        } else {
+            System.out.println(" *** VAZIO *** \n");
+        }
+        indice--;
+    } // ok 
+
+    public void methodName() throws Exception {
+        indice++;
+        printArvore(indice, "methodName");
+        Reconhecer(ValueEnum.PUBLIC.getValue());
+        printArvore(indice++, "public");
+        methodName_L1();
+        indice--;
+    } // ok
+
+    private void methodName_L1() throws IOException, Exception {
+        indice++;
+        printArvore(indice, "methodName_L1");
+        if (lookahead == ValueEnum.STATIC.getValue()) {
+            Reconhecer(ValueEnum.STATIC.getValue());
+            printArvore(indice++, "static");
+
+            methodName_L2();
+        } else {
+            Reconhecer(ValueEnum.ID.getValue());
+            printArvore(indice++, "Identificador => 'ID'");
+
+            Reconhecer(ValueEnum.ABRE_PAR.getValue());
+            printArvore(indice++, "Abre Par => '('");
+
+            formalParameters();
+
+            Reconhecer(ValueEnum.FECHA_PAR.getValue());
+            printArvore(indice--, "Fecha Par => ')'");
+
+            Reconhecer(ValueEnum.ABRE_CHAVE.getValue());
+            printArvore(indice++, "Abre Cha => '{'");
+
+            methodBody();
+
+            Reconhecer(ValueEnum.FECHA_CHAVE.getValue());
+            printArvore(indice++, "Fecha Cha => '}'");
+        }
+        indice--;
+    } // ok 
+
+    private void methodName_L2() throws IOException, Exception {
+        indice++;
+        printArvore(indice, "methodName_L2");
+        if (lookahead == ValueEnum.VOID.getValue()) {
+            Reconhecer(ValueEnum.VOID.getValue());
+            printArvore(indice++, "Metod => 'void'");
+
+            Reconhecer(ValueEnum.MAIN.getValue());
+            printArvore(indice++, "Metod => 'main'");
+
+            Reconhecer(ValueEnum.ABRE_PAR.getValue());
+            printArvore(indice++, "Abre Par => '('");
+
+            Reconhecer(ValueEnum.STRING.getValue());
+            printArvore(indice++, "Cadeia de String => 'String'");
+
+            Reconhecer(ValueEnum.ARG.getValue());
+            printArvore(indice++, "Argumento => 'arg'");
+
+            Reconhecer(ValueEnum.FECHA_PAR.getValue());
+            printArvore(indice++, "Fecha Par => ')'");
+
+            Reconhecer(ValueEnum.ABRE_CHAVE.getValue());
+            printArvore(indice++, "Fecha Chave => '{'");
+
+            methodBody();
+
+            Reconhecer(ValueEnum.FECHA_CHAVE.getValue());
+            printArvore(indice--, "Fecha Cha => '}'");
+        } else {
+            type();
+            Reconhecer(ValueEnum.ID.getValue());
+            printArvore(indice++, "Identificador => 'ID'");
+
+            Reconhecer(ValueEnum.ABRE_PAR.getValue());
+            printArvore(indice++, "Abre Par => '('");
+
+            formalParameters();
+
+            Reconhecer(ValueEnum.FECHA_PAR.getValue());
+            printArvore(indice++, "Fecha Par => ')'");
+
+            Reconhecer(ValueEnum.ABRE_CHAVE.getValue());
+            printArvore(indice++, "Abre Chave => '{'");
+
+            methodBody();
+
+            Reconhecer(ValueEnum.FECHA_CHAVE.getValue());
+            printArvore(indice--, "Fecha Cha => '}'");
+        }
+        indice--;
+    } // ok 
+
+    public void type() throws IOException {
+        indice++;
+        printArvore(indice, "type");
+        switch (lookahead) {
+            case 320: // boolean
+                Reconhecer(ValueEnum.BOOLEAN.getValue());
+                printArvore(indice++, "Lógico => 'boolean'");
+                break;
+            case 610: // char
+                Reconhecer(ValueEnum.CHAR.getValue());
+                printArvore(indice++, "Constante => 'char'");
+                break;
+            case 292: // float
+                Reconhecer(ValueEnum.FLOAT.getValue());
+                printArvore(indice++, "Ponto Flutuante => 'float'");
+                break;
+            case 400: // int
+                Reconhecer(ValueEnum.INT.getValue());
+                printArvore(indice++, "Inteiro => 'int'");
+                break;
+            case 630: // string
+                Reconhecer(ValueEnum.STRING.getValue());
+                printArvore(indice++, "Cadeia de String => 'String'");
+                break;
+            case 470: // void
+                Reconhecer(ValueEnum.VOID.getValue());
+                printArvore(indice++, "Tipo =>  'void'");
+                break;
+            default:
+                System.out.println(" *** VAZIO *** \n");
+
+        }
+        indice--;
+    } // ok 
+
+    private void identifierList() throws IOException {
+        indice++;
+        printArvore(indice, "identifierList");
+        if (lookahead == ValueEnum.ID.getValue()) {
+            Reconhecer(ValueEnum.ID.getValue());
+            printArvore(indice++, "Identificador => 'ID'");
+
+            identifierList_L1();
+        } else {
+            error(ValueEnum.ID.getValue());
+        }
+        indice--;
+    } // ok
+
+    private void identifierList_L1() throws IOException {
+        indice++;
+        printArvore(indice, "identifierList_L1");
+        if (lookahead == ValueEnum.VIRGULA.getValue()) {
+            Reconhecer(ValueEnum.VIRGULA.getValue());
+            printArvore(indice++, "virgula => ','");
+
+            Reconhecer(ValueEnum.ID.getValue());
+            printArvore(indice++, "Identificador => 'ID'");
+            identifierList_L1();
+        } else {
+            System.out.println(" *** VAZIO *** \n");
+        }
     }
+
+    private void formalParameters() throws IOException {
+        indice++;
+        printArvore(indice, "formalParameters");
+        if (lookahead == ValueEnum.BOOLEAN.getValue() || lookahead == ValueEnum.CHAR.getValue()
+                || lookahead == ValueEnum.FLOAT.getValue() || lookahead == ValueEnum.INT.getValue()
+                || lookahead == ValueEnum.STRING.getValue() || lookahead == ValueEnum.VOID.getValue()) {
+            formalParameter();
+            formalParameters_L1();
+        } else {
+            formalParameters_L1();
+        }
+        indice--;
+    } // ok
+
+    private void formalParameters_L1() throws IOException {
+        indice++;
+        printArvore(indice, "formalParameters_L1");
+        if (lookahead == ValueEnum.VIRGULA.getValue()) {
+            Reconhecer(ValueEnum.VIRGULA.getValue());
+            printArvore(indice + 1, "virgula => ','");
+
+            formalParameter();
+            formalParameters_L1();
+        } else {
+            System.out.println(" *** VAZIO *** \n");
+        }
+    } // ok
+
+    private void formalParameter() throws IOException {
+        indice++;
+        printArvore(indice, "formalParameter");
+        type();
+        Reconhecer(ValueEnum.ID.getValue());
+        printArvore(indice + 1, "Identificador => 'ID'");
+        indice--;
+    } // ok
+
+    private void methodBody() throws IOException, Exception {
+        indice++;
+        printArvore(indice, "methodBody");
+        declarationList();
+        statementList();
+    } // ok 
 
     private void statementList() throws IOException, Exception {
         indice++;
-        arvore(indice++, "statementList");
+        printArvore(indice++, "statementList");
         if (lookahead == ValueEnum.ID.getValue() || lookahead == ValueEnum.IF.getValue() || lookahead == ValueEnum.WHILE.getValue()
                 || lookahead == ValueEnum.RETURN.getValue() || lookahead == ValueEnum.BREAK.getValue()) {
             statement();
@@ -470,42 +469,41 @@ public class AnalisadorGramaticalJAVA {
             statementList_L1();
         }
         indice--;
-    }
+    } // ok
 
     private void statement() throws IOException, Exception {
         indice++;
-        arvore(indice++, "statementList");
+        printArvore(indice++, "statementList");
         if (lookahead == ValueEnum.ID.getValue()) {
             Reconhecer(ValueEnum.ID.getValue());
-            arvore(indice++, "ID");
+            printArvore(indice++, "Identificador => 'ID'");
 
             statement_L1();
-        }
-        if (lookahead == ValueEnum.IF.getValue()) {
+        } else if (lookahead == ValueEnum.IF.getValue()) {
             ifStatement();
-        }
-        if (lookahead == ValueEnum.WHILE.getValue()) {
+        } else if (lookahead == ValueEnum.WHILE.getValue()) {
             whileStatement();
-        }
-        if (lookahead == ValueEnum.RETURN.getValue()) {
+        } else if (lookahead == ValueEnum.RETURN.getValue()) {
             Reconhecer(ValueEnum.RETURN.getValue());
-            arvore(indice++, "return");
+            printArvore(indice++, "Token => 'return'");
 
             expression();
 
             Reconhecer(ValueEnum.PONTO_E_VIRGULA.getValue());
-            arvore(indice++, ";");
-        }
-        if (lookahead == ValueEnum.BREAK.getValue()) {
+            printArvore(indice++, ";");
+        } else if (lookahead == ValueEnum.BREAK.getValue()) {
             Reconhecer(ValueEnum.BREAK.getValue());
-            arvore(indice++, "break");
+            printArvore(indice++, "Token => 'break'");
+            
+            Reconhecer(ValueEnum.PONTO_E_VIRGULA.getValue());
+            printArvore(indice++, "Ponto e Vírgula => ';'");
         }
         indice--;
-    }
+    } // ok
 
     private void statementList_L1() throws IOException, Exception {
         indice++;
-        arvore(indice++, "statementList_L1");
+        printArvore(indice++, "statementList_L1");
 
         if (lookahead == ValueEnum.ID.getValue() || lookahead == ValueEnum.IF.getValue() || lookahead == ValueEnum.WHILE.getValue()
                 || lookahead == ValueEnum.RETURN.getValue() || lookahead == ValueEnum.BREAK.getValue()) {
@@ -519,7 +517,7 @@ public class AnalisadorGramaticalJAVA {
 
     private void expressionList() throws IOException, Exception {
         indice++;
-        arvore(indice++, "expressionList");
+        printArvore(indice++, "expressionList");
 
         if (lookahead == ValueEnum.ID.getValue() || lookahead == ValueEnum.NUM.getValue() || lookahead == ValueEnum.CHAR.getValue()
                 || lookahead == ValueEnum.TRUE.getValue() || lookahead == ValueEnum.FALSE.getValue()) {
@@ -529,56 +527,42 @@ public class AnalisadorGramaticalJAVA {
             expressionList_L1();
         }
         indice--;
-    }
+    } // ok
 
     private void expression() throws IOException, Exception {
         indice++;
-        arvore(indice++, "expression");
+        printArvore(indice++, "expression");
         if (lookahead == ValueEnum.ID.getValue() || lookahead == ValueEnum.NUM.getValue() || lookahead == ValueEnum.CHAR.getValue()
                 || lookahead == ValueEnum.TRUE.getValue() || lookahead == ValueEnum.FALSE.getValue()) {
-            literal();
+            literal();  
             expression_L1();
-        }
-        if (lookahead == ValueEnum.ABRE_PAR.getValue()) {
+        } else if (lookahead == ValueEnum.ABRE_PAR.getValue()) {
             Reconhecer(ValueEnum.ABRE_PAR.getValue());
-            arvore(indice++, "(");
+            printArvore(indice++, "Abre Par => '('");
 
             expression();
 
             Reconhecer(ValueEnum.FECHA_PAR.getValue());
-            arvore(indice++, ")");
-        }
-        if (lookahead == ValueEnum.OP_ADITIVO.getValue()) {
-            Reconhecer(ValueEnum.OP_ADITIVO.getValue());
-            arvore(indice++, "+/-");
-
-            expression();
-        }if(lookahead == ValueEnum.VIRGULA.getValue()){
-            expressionList_L1();
-            expression_L1();
-        } if(lookahead == ValueEnum.FECHA_CHAVE.getValue()){
-            Reconhecer(ValueEnum.FECHA_CHAVE.getValue());
-            arvore(indice++, "}");
-            methodName();
-        }if(lookahead == ValueEnum.FECHA_PAR.getValue()){
-            Reconhecer(ValueEnum.FECHA_PAR.getValue());
-            arvore(indice++, ")");
+            printArvore(indice++, "Fecha Par => ')'");
             
-            Reconhecer(ValueEnum.PONTO_E_VIRGULA.getValue());
-            arvore(indice++, ";");
-        }
-        else {
+        } else if (lookahead == ValueEnum.OP_ADITIVO.getValue()) {
+            Reconhecer(ValueEnum.OP_ADITIVO.getValue());
+            printArvore(indice++, "Aditivo Aritimético => +/-");
+
+            expression();
+        } else {
             expression_L1();
         }
-        indice--;
-    }
 
+        indice--;
+    } // ok
+ 
     private void expressionList_L1() throws IOException, Exception {
         indice++;
-        arvore(indice++, "expressionList_L1");
+        printArvore(indice++, "expressionList_L1");
         if (lookahead == ValueEnum.VIRGULA.getValue()) {
             Reconhecer(ValueEnum.VIRGULA.getValue());
-            arvore(indice++, ",");
+            printArvore(indice++, "Vírgula => ','");
 
             expression();
             expressionList_L1();
@@ -586,79 +570,80 @@ public class AnalisadorGramaticalJAVA {
         } else {
             System.out.println(" *** VAZIO *** \n");
         }
-    }
+    } // ok
 
     private void ifStatement() throws IOException, Exception {
         indice++;
-        arvore(indice++, "ifStatement");
+        printArvore(indice++, "ifStatement");
 
         Reconhecer(ValueEnum.IF.getValue());
-        arvore(indice++, "if");
+        printArvore(indice++, "if");
 
         Reconhecer(ValueEnum.ABRE_PAR.getValue());
-        arvore(indice++, "(");
+        printArvore(indice++, "Abre Par => '('");
 
         expression();
 
         Reconhecer(ValueEnum.FECHA_PAR.getValue());
-        arvore(indice++, ")");
+        printArvore(indice++, "Fecha Par => ')'");
 
         statementBlock();
         elseAlternative();
         indice--;
-    }
-
+    } // ok
+ 
     private void literal() throws IOException {
         indice++;
-        arvore(indice++, "literal");
+        printArvore(indice++, "literal");
 
         if (lookahead == ValueEnum.ID.getValue()) {
             Reconhecer(ValueEnum.ID.getValue());
-            arvore(indice++, "ID");
+            printArvore(indice++, "Identificador => 'ID'");
         } else if (lookahead == ValueEnum.NUM.getValue()) {
             Reconhecer(ValueEnum.NUM.getValue());
-            arvore(indice++, "num");
+            printArvore(indice++, "Inteiro => 'num'");
         } else if (lookahead == ValueEnum.CHAR.getValue()) {
             Reconhecer(ValueEnum.CHAR.getValue());
-            arvore(indice++, "char");
+            printArvore(indice++, "Constante char => 'char'");
         } else if (lookahead == ValueEnum.TRUE.getValue()) {
             Reconhecer(ValueEnum.TRUE.getValue());
-            arvore(indice++, "true");
+            printArvore(indice++, "true");
         } else if (lookahead == ValueEnum.FALSE.getValue()) {
             Reconhecer(ValueEnum.FALSE.getValue());
-            arvore(indice++, "false");
+            printArvore(indice++, "false");
         } else {
             System.out.println(" *** VAZIO *** \n");
         }
-    }
+    } // ok
 
     private void expression_L1() throws IOException, Exception {
         indice++;
-        arvore(indice++, "expression_L1");
+        printArvore(indice++, "expression_L1");
         if (lookahead == ValueEnum.OP_ADITIVO.getValue() || lookahead == ValueEnum.OP_MULTIPLICATIVO.getValue()
                 || lookahead == ValueEnum.OP_RELACIONAL.getValue() || lookahead == ValueEnum.OP_LOGICO.getValue()) {
 
             if (lookahead == ValueEnum.OP_ADITIVO.getValue()) {
                 Reconhecer(ValueEnum.OP_ADITIVO.getValue());
-                arvore(indice++, "+/-");
+                printArvore(indice++, "Operador Aritimético => '+/-'");
                 expression();
                 expression_L1();
             }
             if (lookahead == ValueEnum.OP_MULTIPLICATIVO.getValue()) {
                 Reconhecer(ValueEnum.OP_MULTIPLICATIVO.getValue());
-                arvore(indice++, "op_mult");
+                printArvore(indice++, "op_mult => *");
                 expression();
                 expression_L1();
             }
             if (lookahead == ValueEnum.OP_RELACIONAL.getValue()) {
                 Reconhecer(ValueEnum.OP_RELACIONAL.getValue());
-                arvore(indice++, "op_relacional");
+                printArvore(indice++, "op_relacional => '&&/||'");
                 expression();
                 expression_L1();
             }
+
             if (lookahead == ValueEnum.OP_LOGICO.getValue()) {
                 Reconhecer(ValueEnum.OP_LOGICO.getValue());
-                arvore(indice++, "op_relacional");
+                printArvore(indice++, "op_relacional");
                 expression();
                 expression_L1();
             }
@@ -667,20 +652,22 @@ public class AnalisadorGramaticalJAVA {
             System.out.println(" *** VAZIO *** \n");
         }
         indice--;
-    }
+    } // ok
 
     private void statementBlock() throws IOException, Exception {
         indice++;
-        arvore(indice++, "statementBlock");
+        printArvore(indice++, "statementBlock");
         if (lookahead == ValueEnum.ID.getValue() || lookahead == ValueEnum.IF.getValue() || lookahead == ValueEnum.WHILE.getValue()
                 || lookahead == ValueEnum.RETURN.getValue() || lookahead == ValueEnum.BREAK.getValue()) {
             statement();
         } else if (lookahead == ValueEnum.ABRE_CHAVE.getValue()) {
             Reconhecer(ValueEnum.ABRE_CHAVE.getValue());
-            arvore(indice++, "{");
+            printArvore(indice++, "Abre Cha => '{'");
 
             statementList();
+            
             Reconhecer(ValueEnum.FECHA_CHAVE.getValue());
+            printArvore(indice--, "Fecha Cha => '}'");
         } else {
             System.out.println(" *** VAZIO *** \n");
         }
@@ -689,52 +676,53 @@ public class AnalisadorGramaticalJAVA {
 
     private void elseAlternative() throws IOException, Exception {
         indice++;
-        arvore(indice++, "elseAlternative");
+        printArvore(indice++, "elseAlternative");
         Reconhecer(ValueEnum.ELSE.getValue());
-        arvore(indice++, "else");
+        printArvore(indice++, "else");
         statementBlock();
-    }
+    } // ok
 
     private void whileStatement() throws IOException, Exception {
         indice++;
-        arvore(indice++, "whileStatement");
+        printArvore(indice++, "whileStatement");
         Reconhecer(ValueEnum.WHILE.getValue());
-        arvore(indice++, "while");
+        printArvore(indice++, "while");
 
         Reconhecer(ValueEnum.ABRE_PAR.getValue());
-        arvore(indice++, "(");
+        printArvore(indice++, "Abre Par => '('");
 
         expression();
 
         Reconhecer(ValueEnum.FECHA_PAR.getValue());
-        arvore(indice++, ")");
+        printArvore(indice++, "Fecha Par => ')'");
         statementBlock();
         indice--;
-    }
-
+    } // ok
+ 
     private void statement_L1() throws IOException, Exception {
         indice++;
-        arvore(indice++, "statement_L1");
+        printArvore(indice++, "statement_L1");
 
         if (lookahead == ValueEnum.ATRIB_.getValue()) {
             Reconhecer(ValueEnum.ATRIB_.getValue());
-            arvore(indice++, "op_atributo = ");
+            printArvore(indice++, "op_atributo => '=' ");
 
-            expression();
+            expression();            
             statement_L2();
 
-        } else if (lookahead == ValueEnum.ABRE_PAR.getValue()) {
+        }else if(lookahead == ValueEnum.ABRE_PAR.getValue()){
             Reconhecer(ValueEnum.ABRE_PAR.getValue());
-            arvore(indice++, "(");
-
+            printArvore(indice++, "Abre Pa => '('");
+            
             expressionList();
-
+            
             Reconhecer(ValueEnum.FECHA_PAR.getValue());
-            arvore(indice++, ")");
-
+            printArvore(indice-1, "Fecha Par => ')'");
+            
             Reconhecer(ValueEnum.PONTO_E_VIRGULA.getValue());
-            arvore(indice++, ";");
-        } else {
+            printArvore(indice-1, "Ponto e Vírgula => ';'");
+        }
+        else {
             System.out.println(" *** VAZIO *** \n");
         }
         indice--;
@@ -742,23 +730,23 @@ public class AnalisadorGramaticalJAVA {
 
     private void statement_L2() throws IOException, Exception {
         indice++;
-        arvore(indice++, "statement_L2");
+        printArvore(indice++, "statement_L2");
         if (lookahead == ValueEnum.PONTO_E_VIRGULA.getValue()) {
             Reconhecer(ValueEnum.PONTO_E_VIRGULA.getValue());
-            arvore(indice++, ";");
+            printArvore(indice++, "Ponto e Vírgula ';'");
         } else if (lookahead == ValueEnum.ABRE_PAR.getValue()) {
             Reconhecer(ValueEnum.ABRE_PAR.getValue());
-            arvore(indice++, ")");
+            printArvore(indice++, "Abre Par => '('");
 
             expressionList();
 
             Reconhecer(ValueEnum.FECHA_PAR.getValue());
-            arvore(indice++, ")");
+            printArvore(indice++, "Fecha Par => ')'");
 
             Reconhecer(ValueEnum.PONTO_E_VIRGULA.getValue());
-            arvore(indice++, ";");
+            printArvore(indice++, "Ponto e Vírgula => ';'");
         } else {
             System.out.println(" *** VAZIO *** \n");
         }
-    }
+    } // ok
 }
