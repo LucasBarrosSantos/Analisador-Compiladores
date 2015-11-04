@@ -62,13 +62,13 @@ public class AnalisadorGramaticalJAVA {
         lookahead = proximo_token();
         if (lookahead == ValueEnum.PUBLIC.getValue()) {
             Reconhecer(ValueEnum.PUBLIC.getValue());
-            printArvore(indice+1, "public");
+            printArvore(indice + 1, "public");
 
             Reconhecer(ValueEnum.CLASS.getValue());
-            printArvore(indice+1, "class");
+            printArvore(indice + 1, "class");
 
             Reconhecer(ValueEnum.ID.getValue());
-            printArvore(indice+1, "id");
+            printArvore(indice + 1, "id");
 
             classBody();
         } else {
@@ -81,14 +81,12 @@ public class AnalisadorGramaticalJAVA {
         List<String> erros = new ArrayList<>();
         erros.add("" + token);
 
-        int n = 0;
-        for (String s : erros) {
-            if (s.equals(token)) {
-                n = s.indexOf(s);
-            }
-        }
-
-        switch (erros.get(n)) {
+        switch (erros.get(0)) {
+            
+            case "300":
+                System.out.println("Error Token: " + token + ": Esperava-se um 'ID'" + " linha " + "xx");
+                break;
+            
             case "41":
                 System.out.println("Error Token: " + token + ": Esperava-se um ')'" + " linha " + "xx");
                 break;
@@ -99,6 +97,26 @@ public class AnalisadorGramaticalJAVA {
 
             case "59":
                 System.out.println("Error Token: " + token + ": Esperava-se um ';'" + " linha " + "xx");
+                break;
+
+            case "310":
+                System.out.println("Error Token: " + token + ": Esperava-se um 'main'" + " linha " + "xx");
+                break;
+
+            case "320":
+                System.out.println("Error Token: " + token + ": Esperava-se um 'boolean'" + " linha " + "xx");
+                break;
+
+            case "330":
+                System.out.println("Error Token: " + token + ": Esperava-se um 'class'" + " linha " + "xx");
+                break;
+
+            case "350":
+                System.out.println("Error Token: " + token + ": Esperava-se um 'else'" + " linha " + "xx");
+                break;
+
+            case "640":
+                System.out.println("Error Token: " + token + ": Esperava-se um 'arg'" + " linha " + "xx");
                 break;
         }
     } // Terminar...
@@ -154,7 +172,7 @@ public class AnalisadorGramaticalJAVA {
 
     private void printArvore(int indice, String s) {
         for (int i = 0; i <= indice; i++) {
-            System.out.print("  ");
+            System.out.print(" ");
         }
         System.out.print(" |__" + s + "\n");
     } // ok 
@@ -164,7 +182,7 @@ public class AnalisadorGramaticalJAVA {
         printArvore(indice, "classBody");
         if (lookahead == ValueEnum.ABRE_CHAVE.getValue()) {
             Reconhecer(ValueEnum.ABRE_CHAVE.getValue());
-            printArvore(indice + 1, "Abre Chave => '{'");
+            printArvore(indice, "Abre Chave => '{'");
 
             classBodyDeclaration();
 
@@ -203,8 +221,8 @@ public class AnalisadorGramaticalJAVA {
         }
         indice--;
     } // ok
-    
-     private void declarationList_L1() throws IOException {
+
+    private void declarationList_L1() throws IOException {
         indice++;
         printArvore(indice, "declarationList_L1");
 
@@ -243,7 +261,7 @@ public class AnalisadorGramaticalJAVA {
         identifierList();
         indice--;
     } // ok
-    
+
     private void methodDeclaration_L1() throws Exception {
         indice++;
         printArvore(indice, "identifierList_L1");
@@ -271,15 +289,15 @@ public class AnalisadorGramaticalJAVA {
         printArvore(indice, "methodName_L1");
         if (lookahead == ValueEnum.STATIC.getValue()) {
             Reconhecer(ValueEnum.STATIC.getValue());
-            printArvore(indice++, "static");
+            printArvore(indice + 1, "static");
 
             methodName_L2();
         } else {
             Reconhecer(ValueEnum.ID.getValue());
-            printArvore(indice++, "Identificador => 'ID'");
+            printArvore(indice + 1, "Identificador => 'ID'");
 
             Reconhecer(ValueEnum.ABRE_PAR.getValue());
-            printArvore(indice++, "Abre Par => '('");
+            printArvore(indice + 1, "Abre Par => '('");
 
             formalParameters();
 
@@ -287,12 +305,12 @@ public class AnalisadorGramaticalJAVA {
             printArvore(indice--, "Fecha Par => ')'");
 
             Reconhecer(ValueEnum.ABRE_CHAVE.getValue());
-            printArvore(indice++, "Abre Cha => '{'");
+            printArvore(indice + 1, "Abre Cha => '{'");
 
             methodBody();
 
             Reconhecer(ValueEnum.FECHA_CHAVE.getValue());
-            printArvore(indice++, "Fecha Cha => '}'");
+            printArvore(indice - 1, "Fecha Cha => '}'");
         }
         indice--;
     } // ok 
@@ -302,25 +320,25 @@ public class AnalisadorGramaticalJAVA {
         printArvore(indice, "methodName_L2");
         if (lookahead == ValueEnum.VOID.getValue()) {
             Reconhecer(ValueEnum.VOID.getValue());
-            printArvore(indice++, "Metod => 'void'");
+            printArvore(indice + 1, "Metod => 'void'");
 
             Reconhecer(ValueEnum.MAIN.getValue());
-            printArvore(indice++, "Metod => 'main'");
+            printArvore(indice + 1, "Metod => 'main'");
 
             Reconhecer(ValueEnum.ABRE_PAR.getValue());
-            printArvore(indice++, "Abre Par => '('");
+            printArvore(indice + 1, "Abre Par => '('");
 
             Reconhecer(ValueEnum.STRING.getValue());
-            printArvore(indice++, "Cadeia de String => 'String'");
+            printArvore(indice + 1, "Cadeia de String => 'String'");
 
             Reconhecer(ValueEnum.ARG.getValue());
-            printArvore(indice++, "Argumento => 'arg'");
+            printArvore(indice + 1, "Argumento => 'arg'");
 
             Reconhecer(ValueEnum.FECHA_PAR.getValue());
-            printArvore(indice++, "Fecha Par => ')'");
+            printArvore(indice + 1, "Fecha Par => ')'");
 
             Reconhecer(ValueEnum.ABRE_CHAVE.getValue());
-            printArvore(indice++, "Fecha Chave => '{'");
+            printArvore(indice--, "Fecha Chave => '{'");
 
             methodBody();
 
@@ -494,7 +512,7 @@ public class AnalisadorGramaticalJAVA {
         } else if (lookahead == ValueEnum.BREAK.getValue()) {
             Reconhecer(ValueEnum.BREAK.getValue());
             printArvore(indice++, "Token => 'break'");
-            
+
             Reconhecer(ValueEnum.PONTO_E_VIRGULA.getValue());
             printArvore(indice++, "Ponto e Vírgula => ';'");
         }
@@ -534,7 +552,7 @@ public class AnalisadorGramaticalJAVA {
         printArvore(indice++, "expression");
         if (lookahead == ValueEnum.ID.getValue() || lookahead == ValueEnum.NUM.getValue() || lookahead == ValueEnum.CHAR.getValue()
                 || lookahead == ValueEnum.TRUE.getValue() || lookahead == ValueEnum.FALSE.getValue()) {
-            literal();  
+            literal();
             expression_L1();
         } else if (lookahead == ValueEnum.ABRE_PAR.getValue()) {
             Reconhecer(ValueEnum.ABRE_PAR.getValue());
@@ -544,7 +562,7 @@ public class AnalisadorGramaticalJAVA {
 
             Reconhecer(ValueEnum.FECHA_PAR.getValue());
             printArvore(indice++, "Fecha Par => ')'");
-            
+
         } else if (lookahead == ValueEnum.OP_ADITIVO.getValue()) {
             Reconhecer(ValueEnum.OP_ADITIVO.getValue());
             printArvore(indice++, "Aditivo Aritimético => +/-");
@@ -556,7 +574,7 @@ public class AnalisadorGramaticalJAVA {
 
         indice--;
     } // ok
- 
+
     private void expressionList_L1() throws IOException, Exception {
         indice++;
         printArvore(indice++, "expressionList_L1");
@@ -591,7 +609,7 @@ public class AnalisadorGramaticalJAVA {
         elseAlternative();
         indice--;
     } // ok
- 
+
     private void literal() throws IOException {
         indice++;
         printArvore(indice++, "literal");
@@ -665,7 +683,7 @@ public class AnalisadorGramaticalJAVA {
             printArvore(indice++, "Abre Cha => '{'");
 
             statementList();
-            
+
             Reconhecer(ValueEnum.FECHA_CHAVE.getValue());
             printArvore(indice--, "Fecha Cha => '}'");
         } else {
@@ -698,7 +716,7 @@ public class AnalisadorGramaticalJAVA {
         statementBlock();
         indice--;
     } // ok
- 
+
     private void statement_L1() throws IOException, Exception {
         indice++;
         printArvore(indice++, "statement_L1");
@@ -707,22 +725,21 @@ public class AnalisadorGramaticalJAVA {
             Reconhecer(ValueEnum.ATRIB_.getValue());
             printArvore(indice++, "op_atributo => '=' ");
 
-            expression();            
+            expression();
             statement_L2();
 
-        }else if(lookahead == ValueEnum.ABRE_PAR.getValue()){
+        } else if (lookahead == ValueEnum.ABRE_PAR.getValue()) {
             Reconhecer(ValueEnum.ABRE_PAR.getValue());
             printArvore(indice++, "Abre Pa => '('");
-            
+
             expressionList();
-            
+
             Reconhecer(ValueEnum.FECHA_PAR.getValue());
-            printArvore(indice-1, "Fecha Par => ')'");
-            
+            printArvore(indice - 1, "Fecha Par => ')'");
+
             Reconhecer(ValueEnum.PONTO_E_VIRGULA.getValue());
-            printArvore(indice-1, "Ponto e Vírgula => ';'");
-        }
-        else {
+            printArvore(indice - 1, "Ponto e Vírgula => ';'");
+        } else {
             System.out.println(" *** VAZIO *** \n");
         }
         indice--;
