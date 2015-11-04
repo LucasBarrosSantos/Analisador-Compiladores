@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AnalisadorGramaticalJAVA {
+public class GramaticaJAVA {
 
     /**
      * Valor inteiro que vai compara os Tokens
@@ -23,11 +23,11 @@ public class AnalisadorGramaticalJAVA {
     private int indice;
     private List<Integer> listITokens; // Guarda todos os Tokens 
 
-    public AnalisadorGramaticalJAVA(Integer lookahead) {
+    public GramaticaJAVA(Integer lookahead) {
         this.lookahead = lookahead;
     }
 
-    public AnalisadorGramaticalJAVA() {
+    public GramaticaJAVA() {
         listITokens = new ArrayList<>();
     }
 

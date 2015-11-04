@@ -3,7 +3,7 @@ package Sintatico;
 public class TestarValueToken {
 
     public static void main(String[] args) throws Exception {
-        AnalisadorGramaticalJAVA analisador = new AnalisadorGramaticalJAVA();
+        GramaticaJAVA analisador = new GramaticaJAVA();
         analisador.classDeclaration();
     }
 }
